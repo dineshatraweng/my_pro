@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %b Username:
+  = @user.username
+%p
+  %b Email:
+  = @user.email
+%p
+  %b Firstname:
+  = @user.firstname
+%p
+  %b Lastname:
+  = @user.lastname
+
+= link_to 'Back', users_path
+= link_to 'Destroy', user_path(@user.id), :confirm => 'Are you sure?', :method => :delete

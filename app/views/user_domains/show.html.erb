@@ -1,0 +1,13 @@
+<div id="main-content">
+  <div class="domain-partners-name">
+    <h3><%= @domain.name %></h3>
+
+    <ul>
+      <% @group_name.each do |g| %>
+          <li><%= g %></li>
+      <% end %>
+    </ul>
+
+    <%= link_to "Edit" , edit_user_domain_path(@domain) %>
+  </div>
+</div>

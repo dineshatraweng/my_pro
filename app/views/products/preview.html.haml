@@ -1,0 +1,72 @@
+:javascript
+  var category_id = #{get_category_id(@product)};
+  var product_id = #{get_product_id(@product)};
+  $(document).ready(function(){
+    if (typeof(_gaq) != 'undefined')
+    {
+      _gaq.push(['_trackEvent', '#{@product.visibility}', 'visit', '#{@product.name}']);
+    }
+  });
+- unless flash[:is_root].blank?
+  :javascript
+    var dont_log_in_ga = "yes";
+#browse-tab{:class => "padd-top20"}
+  #side-bar
+    #search-box.ui-widget
+      = render :partial => 'find_products'
+
+    #tree-control
+      = link_to tag(:img,{:src => "/images/collapse.png", :class =>'pngFix'}),"javascript:void(0)", :class => "collapse-all"
+      = link_to tag(:img,{:src => "/images/expand.png", :class =>'pngFix'}),"javascript:void(0)", :class => "expand-all"
+
+    %ul#browse.filetree.treeview-famfamfam
+      = render :partial => 'product_list'
+
+  #main-content
+    -unless @product.is_parent_product?
+      -unless @versions.blank?
+        #tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
+          %ul#tab-label.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all
+            %li.version
+              Versions:
+            - @versions.each do |version|
+              - if version[:id] == @product.id
+                %li.ui-state-default.ui-corner-top.ui-tabs-selected.ui-state-active
+                  %a{:href=>"javascript:void(0)"}
+                    = "#{version[:version].join('.')}"
+              - else
+                %li.ui-state-default.ui-corner-top
+                  %a{:href=>"javascript:void(0)"}
+                    = "#{version[:version].join('.')}"
+    #tabs-1.ui-tabs-panel.ui-widget-content.ui-corner-bottom
+      #white-wrapper
+        #breadcrumb #{@product.parent_groups(params[:category])}
+        #heading-wrap
+          %img.folder-big.pngFix{:src => "/images/folder-big.png", :alt => "folder-big.png"}
+          %h2.heading #{@product.name}
+
+          %div.description
+            - unless @product.description.blank?
+              = get_formatted_description(@product)
+
+          - if @product.documents.blank?
+            %p.notif= "No Documents Added."
+          - else
+
+            %div
+              %ul.product-docs
+                - documents = @product.documents.order('document_order')
+                - unless documents.nil?
+                  - documents.each do |document|
+                    - if show_document_if_link_exists?(document)
+                      %li.ui-state-default{:id => "document_#{document.id}",:style => "#{'background: none repeat scroll 0 0 #FFE0E0;' if current_user_is_admin? && !link_is_broken?(document) }"}
+                        - dt = get_extension_from_url(document.link)
+                        - draggable = ""  if documents.size > 1;
+                        = link_to tag(:img,{:class =>"pngFix", :src => display_document_icon(dt), :alt => "#{document.name}"}) + draggable + document.name ,"javascript:void(0)", :target => "_blank", :class =>"product-name-link document-view"
+          %p
+            = link_to "Back to Admin View",product_path(@product.parent)
+
+        = hidden_field_tag "productID", @product.id
+        = hidden_field_tag "productRating"
+        = hidden_field_tag "productName", @product.name
+

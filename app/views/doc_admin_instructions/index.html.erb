@@ -1,0 +1,478 @@
+<html>
+<head>
+  <title>TIBCO Product documentation GUIDE</title>
+  <%= stylesheet_link_tag 'admin_instructions','reset' %>
+  <%= javascript_include_tag 'jquery-1.7.1.min',"instructions" %>
+  <link href="/images/favicon.ico" rel="shortcut icon">
+</head>
+<body>
+<div class="content-wraper">
+<div class="header-content clearfix">
+  <h1 class="instruction-header">
+    <%= link_to "Product Documentation", root_url(:ref_logo => "home"), :class => 'logo pngFix' %>
+  </h1>
+
+  <div id="login">
+    <ul id="register">
+      <li>
+          <span class="welcome_text">
+            Welcome,
+            <span class="Admin_username">
+              <%= current_user.firstname + " " + current_user.lastname %> (admin)
+              <span class="welcome_bar_admin">
+                |
+              </span>
+            </span>
+          </span>
+      </li>
+      <li>
+        <%= link_to "Sign Out" , user_logout_path %>
+      </li>
+    </ul>
+  </div>
+</div> <!-- End of header-content-->
+
+<div class="instruction-wraper">
+  <h1>TIBCO Product Documentation Guide For Admin Level</h1>
+  <div class="instruction-heading">
+
+    <div class="product-instruction-wraper">
+      <label class="category-label">Category
+        <span class="arrow"><img src="images/left-arrow.gif" alt=""></span>
+      </label>
+      <div class="product-instructions-items">
+        <ul>
+          <li><a href="#add_category">How to create a category?</a></li>
+          <!--<li><a href="#sub_category">How to add a sub-category?</a></li>-->
+          <li><a href="#update_category">How to update a category?</a></li>
+          <li><a href="#Deleting_category">How to delete a category?</a></li>
+          <!--<li><a href="#remove_child_category">How to delete a sub-category?</a></li>-->
+          <!--<li><a href="#remove_parent_category">How to delete a parent-category?</a></li>-->
+        </ul>
+      </div>
+    </div> <!-- End of product-instruction-wraper-->
+
+    <div class="product-instruction-wraper">
+      <label>Product
+        <span class="arrow"><img src="images/left-arrow.gif" alt=""></span>
+      </label>
+      <div class="product-instructions-items">
+        <ul>
+          <li><a href="#adding_product">How to create a product?</a></li>
+          <li> <a href="#add_parent_product">How to create a parent product?</a></li>
+          <li> <a href="#updating_product">How to update a product?</a></li>
+          <!--<li>  <a href="#edit_individual_product">How to update a product?</a></li>-->
+          <!--<li>  <a href="#update_child_product">How to update a child product?</a></li>-->
+          <!--<li><a href="#update_parent_product">How to update a parent product?</a></li>-->
+          <li><a href="#deleting_product">How to delete a product?</a></li>
+          <!--<li><a href="#remove_parent_product">How to delete a parent product?</a></li>-->
+          <li><a href="#visibility">How to change the visibility or exposure level of a product?</a></li>
+        </ul>
+      </div>
+    </div> <!-- End of product-instruction-wraper-->
+
+    <div class="product-instruction-wraper">
+      <label class="document-label">Document
+        <span class="arrow"><img src="images/left-arrow.gif" alt=""></span>
+      </label>
+      <div class="product-instructions-items">
+        <ul>
+          <li><a href="#Add_document">How to add a document?</a></li>
+          <li><a href="#updating_document">How to update a document?</a></li>
+          <li><a href="#remove_document">How to delete a document?</a></li>
+          <li><a href="#order_of_document">How to rearrange the order of the document?</a></li>
+          <li><a href="#out_of_cycle">How to mark documents for out-of-cycle updates?</a></li>
+        </ul>
+      </div>
+    </div> <!-- End of product-instruction-wraper-->
+
+
+    <div class="product-instruction-wraper">
+      <label class="search-label">Search
+        <span class="arrow"><img src="images/left-arrow.gif" alt=""></span>
+      </label>
+      <div class="product-instructions-items">
+        <ul>
+          <li><a href="#quick_find">How to search for product?</a></li>
+          <li><a href="#quick_find">How to search product by tag?</a></li>
+          <li><a href="#big_find">How to search for TIBCO documents?</a></li>
+        </ul>
+      </div>
+    </div> <!-- End of product-instruction-wraper-->
+  </div> <!--end of Instruction-heading -->
+
+<div class="img-wraper">
+  <ul>
+  <li>
+    <h2 id="add_category">Adding a category</h2>
+    <p class="subtitle">Product is always belongs to a category, so before creating a product we must first create a category to which the product should belong.</p>
+    <ul>
+      <li><a href="#add_category1"> > Adding a categroy</a></li>
+      <li><a href="#sub_category"> > Adding a sub-category</a></li>
+    </ul>
+    <div class="adding-category">
+      <div id="add_category1"><h3>Steps for adding a category.</h3></div>
+      <div>
+        <ol>
+          <li><p class="instruction-info">Click the Add Category button.</p></li>
+          <img src="/images/admin_instructions/Category - home page.jpg" />
+          <li><p class="instruction-info">Specify the name of the category that you want to create and click the Create button.</p></li>
+          <img src="/images/admin_instructions/category-creation.jpg" />
+          <li><p class="instruction-info">Ensure that the Category is created.</p></li>
+          <img src="/images/admin_instructions/Category - category created.jpg" />
+        </ol>
+      </div>
+
+      <div id="sub_category"><h3 >Steps for creating a category inside another category (creating a sub-category).</h3></div>
+      <div>
+        <ol>
+          <li><p class="instruction-info">Click the Add Category button.</p></li>
+          <img src="/images/admin_instructions/sub-category-home.jpg" />
+          <li><p class="instruction-info">Specify the name of new category as well as the name of the parent category inside which the new category will be placed, and then click the Create button.</p></li>
+          <img src="/images/admin_instructions/sub-category-creation.jpg" />
+          <li><p class="instruction-info"> Ensure that the Sub-Category is created.</p></li>
+          <img src="/images/admin_instructions/sub-category-created.jpg" />
+        </ol>
+      </div>
+
+
+      <div ID="update_category">
+        <h2>Updating a category</h2>
+        <h3>Steps for updating a category</h3>
+        <div>
+          <ol>
+            <li><p class="instruction-info">Click the Edit icon next to the Category name.</p></li>
+            <img src="/images/admin_instructions/category-edit.jpg" />
+          </ol>
+        </div>
+       </div>
+
+      <div  id="Deleting_category">
+        <h2>Deleting a category</h2>
+        <ul>
+          <li><a href="#remove_child_category"> > Delete the sub-category</a></li>
+          <li><a href="#remove_parent_category"> > Delete the parent category</a></li>
+        </ul>
+        <div id="remove_child_category"><h3>Deleting the sub-category</h3></div>
+        <div>
+          <ol>
+            <li><p class="instruction-info">Click the Delete icon.</p></li>
+            <img src="/images/admin_instructions/category-delete.jpg" />
+            <li><p class="instruction-info">Note that when the child category is deleted, its child product will belong to its parent category.</p></li>
+            <img src="/images/admin_instructions/category-deleted.jpg" />
+          </ol>
+        </div>
+      </div>
+
+
+      <div id="remove_parent_category"><h2>Deleting the Parent Category</h2></div>
+      <div>
+        <ol>
+          <li>
+            <p class="instruction-info">Click the Delete icon.</p>
+            <p class="instruction-info">Note that the parent category can only be deleted if and only if it is empty.</p>
+          </li>
+
+          <img src="/images/admin_instructions/category-parent-delete.jpg" />
+        </ol>
+      </div>
+
+      <hr/>
+
+    </div><!--end of adding-category -->
+  </li> <!--end of parent li -->
+</hr>
+
+<li>
+  <h2>Adding a product</h2>
+  <div>
+    <div id="adding_product"><h3>Steps for adding a product</h3></div>
+    <div>
+      <ol>
+        <li><p class="instruction-info">Click the Add Product Version button.</p></li>
+        <img src="/images/admin_instructions/Product-Adding.jpg" />
+        <li><p class="instruction-info">Fill the entire form.</p></li>
+        <img src="/images/admin_instructions/Add_product1.jpg" />
+        <li><p class="instruction-info">Ensure that the Product is created.</p></li>
+        <img src="/images/admin_instructions/product-created.jpg" />
+      </ol>
+    </div>
+  </div>
+
+  <div>
+    <div id="add_parent_product"><h3>Steps for adding a parent product</h3></div>
+    <div>
+      <ol>
+        <li><p class="instruction-info">Click the Add Product button.</p></li>
+        <img src="/images/admin_instructions/parent-product.jpg" />
+        <li><p class="instruction-info">Fill the entire form.</p></li>
+        <img src="/images/admin_instructions/Add_product.png" />
+        <li><p class="instruction-info">Ensure that the parent product is created.</p></li>
+        <img src="/images/admin_instructions/parent-product-created.jpg" />
+      </ol>
+    </div>
+  </div>
+
+
+</li>
+
+
+  <div id="updating_product">
+    <h2>Updating product</h2>
+    <ul>
+      <li><a href="#edit_individual_product"> > Edit an individual product.</a></li>
+      <li><a href="#update_child_product"> > Edit the child product.</a></li>
+      <li><a href="#update_parent_product"> > Update the parent product.</a></li>
+    </ul>
+    <div>
+      <div id="edit_individual_product"><h3>Steps for updating a product</h3></div>
+      <div>
+        <ol>
+          <li><p class="instruction-info">Select the product from the category.</p></li>
+          <img src="/images/admin_instructions/product-delete.jpg" />
+          <li><p class="instruction-info">Click the Edit icon.</p></li>
+          <img src="/images/admin_instructions/product-Edit.jpg" />
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div id="update_child_product"><h3>Steps for updating child product</h3></div>
+    <div>
+      <ol>
+        <li><p class="instruction-info">Select the parent product from the category.</p></li>
+        <img src="/images/admin_instructions/document-delete.jpg" />
+        <li><p class="instruction-info">Select the child product.</p></li>
+        <img src="/images/admin_instructions/document-childproduct-created.jpg" />
+        <li><p class="instruction-info">Click the Edit icon.</p></li>
+        <img src="/images/admin_instructions/edit_parent_product.jpg" />
+      </ol>
+    </div>
+  </div>
+
+  <div>
+    <div id="update_parent_product"><h3>Steps for updating parent product</h3></div>
+    <div>
+      <ol>
+        <li><p class="instruction-info">Select the parent product from the category.</p></li>
+        <img src="/images/admin_instructions/document-delete.jpg" />
+        <li><p class="instruction-info">Click the Edit icon.</p></li>
+        <img src="/images/admin_instructions/edit_parent_product1.jpg" />
+      </ol>
+    </div>
+  </div>
+
+  <div id="deleting_product">
+    <h2 id="">Deleting a Product</h2>
+    <ul>
+      <li><a href="#remove_product"> > Deleting Indvidual Product</a></li>
+      <li><a href="#remove_parent_product"> > Deleting Parent Product</a></li>
+    </ul>
+
+      <div id="remove_product"><h3>Steps for deleting an individual product</h3></div>
+      <div>
+        <ol>
+          <li><p class="instruction-info">Select an individual product from the category.</p></li>
+          <img src="/images/admin_instructions/product-delete.jpg" />
+          <li><p class="instruction-info">Click the Delete icon.</p></li>
+          <img src="/images/admin_instructions/product-delete-icon.jpg" />
+        </ol>
+      </div>
+  </div>    
+
+
+    <div>
+      <h3 id="remove_parent_product">Steps for deleting a parent product</h3>
+      <ol>
+        <li><p class="instruction-info">Select a parent product from the category.</p></li>
+        <img src="/images/admin_instructions/parent-product-delete.jpg" />
+        <li><p class="instruction-info">Click the Delete icon.</p></li>
+        <img src="/images/admin_instructions/parent-product-delete-1.jpg" />
+        <li><p class="instruction-info">Note that when a parent product is deleted, its child product will belong to the same category as that of the parent.</p></li>
+        <img src="/images/admin_instructions/parent-product-delete-2.jpg" />
+      </ol>
+    </div>
+  </div>
+
+  <div id="visibility">
+    <h2>Changing the visibility or exposure level of a product</h2>
+    <h2>Diffrent visibility levels of product are as follows:</h2>
+    <ul>
+        <li><p>- <span class="level-type"> Public level </span> - These products are visible to everyone</p></li>
+        <li><p>- <span class="level-type"> Employee level </span> - These products are visible only to TIBCO customer, partner, or employee who are logged in.</p></li>
+        <li><p>- <span class="level-type"> Admin Level </span> - These products are visible to admin users only.</p></li>
+    </ul>
+    <div>
+        <ol>
+          <img src="/images/admin_instructions/Product-level.jpg" />
+          <h3 style="color:black">To change the visibility level of a product, follow these steps:</h3>
+          <li><p class="instruction-info">Select product from the category.</p></li>
+          <img src="/images/admin_instructions/document-childproduct-update1.jpg" />
+          <li><p class="instruction-info">Click the Edit icon.</p></li>
+          <img src="/images/admin_instructions/prodcut-visibility.jpg" />
+          <li><p class="instruction-info">Select different level.</p></li>
+          <img src="/images/admin_instructions/Product-level-changed.jpg" />
+        </ol>
+      </div>
+  </div>
+
+
+<hr/>
+
+<ul>
+<li>
+  <div id="Add_document">
+    <h2 >Adding document</h2>
+    <div>
+      <div><h3>Steps for adding documents to a product.</h3></div>
+      <div>
+        <ol>
+          <li><p class="instruction-info">Click the Add Document button.</p></li>
+          <img src="/images/admin_instructions/document-new.jpg" />
+          <li><p class="instruction-info">Specify the name of the document and the path for the document and then click the Ceate Document button.</p></li>
+          <img src="/images/admin_instructions/document-creation.jpg" />
+          <li><p class="instruction-info">Ensure that the document is added.</p></li>
+          <img src="/images/admin_instructions/document-created.jpg" />
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div id="updating_document">
+    <h2 >Updating a document</h2>
+    <!--<ul>-->
+    <!--<li><a href="#update_individual_product_document"> > Editing an individual product document</a></li>-->
+    <!--<li><a href="#update_child_product_document"> > Editing child product document</a></li>-->
+    <!--</ul>-->
+    <div>
+      <div id="update_individual_product_document"><h3>Steps for updating an individual product document</h3></div>
+      <div>
+        <ol>
+          <li><p class="instruction-info">Select an individual product from the category.</p></li>
+          <img src="/images/admin_instructions/document-childproduct-update1.jpg" />
+          <li><p class="instruction-info">Click the Edit icon.</p></li>
+          <img src="/images/admin_instructions/document-childproduct-update.jpg" />
+        </ol>
+      </div>
+
+      <div id="update_child_product_document"><h3>Steps for updating the child product document</h3></div>
+      <div>
+        <ol>
+          <li><p class="instruction-info">Select the child product from parent product whose document you want to delete.</p></li>
+          <img src="/images/admin_instructions/document-parent-product-edit.jpg" />
+          <li><p class="instruction-info">Click the Edit icon.</p></li>
+          <img src="/images/admin_instructions/edit_child_product_document.jpg" />
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div id="remove_document">
+    <h2 >Deleting a document</h2>
+    <!--<ul>-->
+    <!--<li><a href="#delete_individual_product_document"> > Delete an individual product document.</a></li>-->
+    <!--<li><a href="#delete_child_product_document"> > Delete the child product document.</a></li>-->
+    <!--</ul>-->
+    <div>
+      <div id="delete_individual_product_document"><h3>Delete an individual product document</h3></div>
+      <div>
+        <ol>
+          <li><p class="instruction-info">Select the product whose document you want to delete.</p></li>
+          <img src="/images/admin_instructions/document-product-deleted.jpg" />
+          <li><p class="instruction-info">Click the Delete icon.</p></li>
+          <img  src="/images/admin_instructions/document-product-deleted1.jpg" />
+        </ol>
+      </div>
+    </div>
+    <div>
+      <div id="delete_child_product_document"><h3>Delete the child product document</h3></div>
+      <div>
+        <ol>
+          <li><p class="instruction-info">Select the product whose document you want to delete.</p></li>
+          <img src="/images/admin_instructions/document-delete.jpg" />
+          <li><p class="instruction-info">Select the child product.</p></li>
+          <img src="/images/admin_instructions/document-childproduct-created.jpg" />
+          <li><p class="instruction-info">Click the Delete icon.</p></li>
+          <img src="/images/admin_instructions/document-deleted.jpg" />
+        </ol>
+      </div>
+    </div>
+  </div>  
+
+<div id="order_of_document">
+  <h2>Changing the order of the document.</h2>
+  <div>
+    <div>
+      <ol>
+        <li><p class="instruction-info">Check the original order of the documents.</p></li>
+        <img src="/images/admin_instructions/document-orger.jpg" />
+        <li><p class="instruction-info">To change the order of the document, drag the Image icon to the position where you want the document to appear.</p></li>
+        <img src="/images/admin_instructions/document-order-change.jpg" />
+        <li><p class="instruction-info">Click the Save Document Order button.</p></li>
+        <img src="/images/admin_instructions/document-order-saved.jpg" />
+      </ol>
+    </div>
+  </div>
+</div>  
+
+<div id="out_of_cycle">
+  <h2>Marking the document for out-of-cycle update.</h2>
+    <div>
+      <ol>
+        <li><p class="instruction-info">Click the out of update cycle icon.</p></li>
+        <img src="/images/admin_instructions/document-out-of-cycle.jpg" />
+      </ol>
+    </div>
+</div>  
+</li>
+<hr/>
+
+<li>
+  <div id="quick_find">
+    <h2>Quick find</h2>
+    <p class="functinality-info">You can search for products or parent products using the quick find functionality.</p>
+    <p class="functinality-info">Note that the child products cannot be searched using the quick find functionality.</p>
+      <div>
+        <ol>
+          <img src="/images/admin_instructions/quick-find.jpg" />
+          <li><p class="instruction-info">Type the product "name" or product "tag" name that you want to search.</p></li>
+          <img src="/images/admin_instructions/quick-find-search.jpg" />
+          <li><p class="instruction-info">Quick find search result for word "tibco".</p></li>
+          <img src="/images/admin_instructions/quick-find-result-page.jpg" />
+          </ol>
+      </div>
+  </div>
+</li>
+
+<hr/>
+
+  <li>
+    <div id="big_find">
+      <h2>Searching for TIBCO Documents.</h2>
+        <div>
+          <ol>
+            <li>Click the Search icon.</li>
+            <img src="/images/admin_instructions/big-find.jpg" />
+            <img src="/images/admin_instructions/document-search.jpg" />
+            <li><p class="instruction-info">You can limit the search result by specifying the product name in the add filter column.</p>
+            <p>Note: It will search all the docucments of "TIBCO Spotfire DecisionSite 9.1.1" product that contains word "MicroArray Analysis - User's Guide."</p></li>
+            <img src="/images/admin_instructions/big-find-filter.jpg" />
+            <img src="/images/admin_instructions/big-find-filter-product.jpg" />
+          </ol>
+        </div>
+    </div>
+  </li>
+</ul>
+
+</div> <!--End of img-wraper -->
+</div> <!--End od instruction-wraper -->
+<p style="display: block;"id="back-top">
+  <a href="#top">
+    <span></span>
+    <em>Back to top</em>
+  </a>
+</p>
+</div> <!-- End of content-wraper-->
+</body>
+</html>

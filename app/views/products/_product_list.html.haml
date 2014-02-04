@@ -1,0 +1,23 @@
+- indentation_index = 1
+- margin = 5
+
+%li.root
+  %span.expandable-level-0= link_to "Products A-Z", a_z_products_products_path, :class => "a-z-products"
+
+-#- root_groups(@groups).each do |group|
+- @groups.each do |group|
+  %li.root
+    %span.expandable-level-0.pngFix
+      .ellipsis.category{:title => "#{group.name}", :id => "#{group.name.parameterize}", :name => "#{'c_'+group.id.to_s}"}
+        = group.name_filter
+      - if logged_in?
+        - unless current_user_is_employee?
+          .group-actions
+            = link_to tag("img", { :src => "/images/edit-small.png", :alt => "edit-small.png" }), edit_group_path(group)
+            - unless product_exists_in_group_hierarchy?(group)
+              = link_to tag("img", { :src => "/images/delete.png", :alt => "delete.png" }), group, :onClick => delete_function("Are you sure you want to delete the group?"), :method => :delete
+
+    -#- if !group_children(@groups,group).empty?
+    - if group.has_children?
+      = render :partial => 'shared/list', :locals => {:group => group, :indentation => indentation_index, :margin => (margin-5)}
+    = render :partial => 'shared/prod', :locals => {:group => group, :indentation => indentation_index}

@@ -1,0 +1,22 @@
+<script>
+    path_for="products"
+</script>
+
+<%= semantic_form_for(@doc_ftp) do |f| %>
+    <% if @doc_ftp.errors.any? %>
+        <div id="error_explanation">
+          <h2 class="error_details"><%= pluralize(@doc_ftp.errors.count, "error") %> prohibited this doc_ftp from being saved:</h2>
+        </div>
+    <% end %>
+
+    <ul>
+      <%= f.input :path, :as => :string, :label => "File Path", :input_html => {:class => "folder-path-field"} %>
+      <p class ='tags_class'>
+        [ <span>Specify the path of archive file to be extracted.</span><br><span> Only zip format archive files (having .zip extension) are supported.</span> ]
+      </p>
+    </ul>
+    <div id="actions">
+      <%= f.submit  locals[:submit_label] %>
+      <%= link_to 'Back', doc_ftps_path, :class => 'pngFix' %>
+    </div>
+<% end %>

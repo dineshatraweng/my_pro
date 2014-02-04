@@ -1,0 +1,41 @@
+:javascript
+  path_for="documents"
+  product_id=#{@product.id.to_s}
+
+
+= semantic_form_for [@product, @document], :html => {:class => "document-form"}  do |f|
+  - if @document.errors.any?
+    %div#error_explanation
+      %h2.error_details= "#{pluralize(@document.errors.count, "error")} prohibited this document from being saved."
+
+  %ul
+    = f.input :name, :input_html => {:id => "doc-name-field"}
+    = f.input :description,:as => :text, :input_html => {:id => "doc-description-field" }
+    %li
+      %label Product Directory
+      %label.document-product-path-label #{@document.product.folder_path}
+    -#-if @document.new_record? == false &&  @document.is_a_pdf?
+    -#  %li
+    -#    %label PDF Count
+    -#    %label.pdf-count #{@document.pdf_count}
+    -#    %a{:class =>'pdf-count',:href=> "#{update_page_count_product_document_url(@product,@document)}"}Update Count
+    -#= f.input :document_order, :label => "Document Order", :input_html => {:value => (@document.document_order.blank? ? @document.document_order_value(@product) : @document.document_order)}
+    %li
+      %ul
+        -#= f.input :doctype, :label=> "Document type", :as => 'radio', :collection => get_doctype_options
+        = f.input :link, :label => "Document Path", :input_html => {:class => "folder-path-field"}
+        %li.hints-wrapper
+          %p.inline-hints
+            = "<b>ex: 5.6/html/index.html<br>ex: 5.6/pdf/index.pdf</b>".html_safe
+
+        - unless @document.new_record?
+          %li
+            %label Public Url
+            %label.document-product-path-label #{get_public_document_link(@document.product, @document)}
+
+
+    -#= f.input :doc_type, :label_method => :doctype, :input_html => {:id => 'selectpg'}, :label => "Document Type"
+
+  #actions
+    = f.submit
+    = link_to 'Back', get_redirect_url, :class => 'pngFix'

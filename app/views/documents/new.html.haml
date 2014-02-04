@@ -1,0 +1,3 @@
+#main-content
+  %h2 New document for #{@document.product.name.gsub("®".force_encoding('utf-8'),"<sup>®</sup>").gsub('&reg;',"<sup>®</sup>").gsub("&REG;","<sup>®</sup>").gsub('&reg',"&amp;reg").gsub('&REG',"&amp;REG").html_safe}
+  = render 'form'

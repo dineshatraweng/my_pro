@@ -1,0 +1,19 @@
+%h1 Listing comments
+
+%table
+  %tr
+    %th Content
+    %th
+    %th
+    %th
+
+  - @comments.each do |comment|
+    %tr
+      %td= comment.content
+      %td= link_to 'Show', product_comment_path(comment.product,comment)
+      %td= link_to 'Edit', edit_product_comment_path(comment.product,comment)
+      %td= link_to 'Destroy', product_comment_path(comment.product,comment), :confirm => 'Are you sure?', :method => :delete
+
+<br />
+
+= link_to 'Leave Comment', new_product_comment_path(@product)

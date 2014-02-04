@@ -1,0 +1,32 @@
+<p> Hi admin,</p>
+
+<p><%= @mail_message %></p>
+<p><%= @no_broken_links  unless @no_broken_links.blank? %> </p>
+<p><%= @products_archived_string  unless @products_archived_string.blank? %> </p>
+<% check_for = ["Product details has been changed"] %>
+<% @recent_update_docs.keys.each do |key| %>
+    <dl>
+      <% if @recent_update_docs[key].include?("Product details has been changed") %>
+          <ul><li><dt><%= key + " (Product details has been changed)" %></dt></li></ul>
+      <% else %>
+          <ul><li><dt><%= key %></dt></li></ul>
+      <% end %>
+      <% @recent_update_docs[key].each do |key_value| %>
+          <ul  style="list-style-type:square">
+            <% unless key_value.blank? %>
+                <% unless key_value == "Product details has been changed" %>
+                    <dd><li><%= key_value %></li></dd>
+                <% end %>
+            <% end %>
+          </ul>
+      <% end %>
+    </dl>
+<% end %>
+
+Thanks,
+<br/>
+<p>
+  developer team,
+  <br/>
+  raw engineering inc
+</p>

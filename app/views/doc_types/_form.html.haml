@@ -1,0 +1,10 @@
+= semantic_form_for(@doc_type) do |f|
+  - if @doc_type.errors.any?
+    %div#error_explanation
+      %h2.error_details= "#{pluralize(@doc_type.errors.count, "error")} prohibited this document type from being saved."
+
+  %ul
+    %li= f.input :doctype, :label => "Document Type"
+  #actions
+    = f.submit action_name == "new"? 'Create' : "Save"
+    = link_to 'Back', root_url

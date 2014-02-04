@@ -1,0 +1,69 @@
+
+%div{:id => 'browse-tab', :class => 'padd-top20'}
+  #side-bar
+    #search-box.ui-widget
+      = render :partial => 'find_products'
+
+    #tree-control
+      = link_to tag(:img,{:src => "/images/collapse.png", :class =>'pngFix'}),"#", :class => "collapse-all"
+      = link_to tag(:img,{:src => "/images/expand.png", :class =>'pngFix'}),"#", :class => "expand-all"
+
+    %ul#browse.filetree.treeview-famfamfam
+      = render :partial => 'product_list'
+
+  #main-content
+    #az-wrap
+      #az-title-wrap
+        %p.az-title
+        %p.asterisk-notice
+          %span.login-required *
+          #{" Requires login"}
+      %ul#product-cluster
+        %p.result-count
+          Found
+          %span#Product-search-count
+          results for
+          %span#product-count-result
+            %b
+              "#{@product_name}"
+        - unless @products.blank?
+          - count = 0
+          - @products.each do |product|
+            -unless product.blank?
+              -if current_user_is_admin?
+                %li{:class => set_access_icon(product)}
+                  -if product.tags.blank?
+                    - count = count + 1
+                    = link_to "#{"#{product.name_filter}"}#{content_tag(:span, '*', :class => 'login-required') if !product.is_public_level?}".html_safe,product_url(product), :class => 'product_name', :id =>"prod-az_#{product.id}"
+                  -else
+                    - count = count + 1
+                    = link_to "#{"#{product.name_filter}" + "(#{product.tags})" }#{content_tag(:span, '*', :class => 'login-required') if !product.is_public_level?}".html_safe,product_url(product), :class => 'product_name'
+              -else
+                - if !product.is_only_for_admin?
+                  %li
+                    - count = count + 1
+                    = link_to "#{"#{product.name_filter}"}#{content_tag(:span, '*', :class => 'login-required') if !product.is_public_level?}".html_safe,product_url(product), :class => 'product_name', :id =>"prod-az_#{product.id}"
+        - else
+          %li
+            = "No Product Found"
+
+
+
+:javascript
+  $(document).ready(function(){
+         if ("#{count}")
+         {
+         $("#Product-search-count").text("#{count}")
+         }
+         else
+         {
+         $("#Product-search-count").text("#{0}")
+         }
+
+  });
+
+   $('#quick-find').focus(function() {
+
+          $('#quick-find').val('');
+      })
+

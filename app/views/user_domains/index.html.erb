@@ -1,0 +1,28 @@
+<div id="top"></div>
+<div class="domain-searchheader">
+  <% @alphabets.each do |char| %>
+      <%= link_to "#{char}" , user_domains_path(:search => char), :class =>"#{char}-domains #{bold_search_letter(char, @search_char || 'A')} " %>
+  <% end %>
+</div>
+<div class=create-domain>
+  <%= link_to "Add Domain", new_user_domain_path , :class => 'add-domain-link' %>
+  <p>
+    <span>
+    <a href="#bottom" id="scroll-bottom">Go To Bottom</a>
+    </span>
+  </p>
+</div>
+<div class="domain-search-results">
+  <ul>
+    <% @user_domains.each do |domain| %>
+        <li>
+        <span class="user-actions">
+          <%= link_to tag("img", { :src => "/images/edit-small.png", :alt => "edit-icon.png" }),edit_user_domain_path(domain), :class => 'mc-button-link',:title => "Edit #{domain.name.squeeze(" ")}" %>
+          <%= link_to tag("img", { :src => "/images/delete.png", :alt => "delete-icon.png" }),user_domain_path(domain), :onClick => delete_function("Are you sure you want to delete the domain?"), :method => :delete,:class => 'mc-button-link',:title => "Delete #{domain.name.squeeze(" ")}" %>
+        </span>
+          <p><%= domain.name %></p>
+        </li>
+    <% end %>
+  </ul>
+  <p id="bottom"><a href="#top" id="scroll-top">Go To Top</a></p>
+</div>

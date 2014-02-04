@@ -1,0 +1,72 @@
+= stylesheet_link_tag 'jquery-ui-1.8.14.tabs'
+:javascript
+  active_tab = "##{@success[:active_tab]}"
+  $(document).ready(function(){
+    $('.tabs').tabs({show: function(event, ui){$("#ldap_credentials_username",$(ui.panel)).focus();}});
+    $('.tabs').tabs("select", active_tab);
+    $("#ldap_credentials_username",$(active_tab)).focus();
+  });
+
+.tabs.height100
+
+  #login-tabs
+    - unless flash[:Need_Login?].blank?
+      %p{:id =>"login_require_message"}
+        = flash[:Need_Login?]
+    - unless request.query_string.blank?
+      %p{:id =>"login_require_message"}
+        - session[:redirected_to_document] = request.query_string.split("=").last
+        = app_config(:document_require_login_message)
+    %ul
+      %li= link_to "Customers and Partners", "#partners-and-customers-login" , :id => "customers_and_p"
+      %li= link_to "Employees", "#employee-login" , :id => "emp_login"
+    #login-wrap
+      %div#error_explanation
+        - unless @success.blank?
+          - if @success.has_key?(:error)
+            %h2.error_details= "#{@success[:error]}"
+
+        #partners-and-customers-login
+          %p.employee-login-header1
+            %b Enter your TIBCOmmunity username and password.
+          - semantic_form_for :ldap_credentials, :url => login_ldap_logins_path do |f|
+            %ul
+              - unless params['ldap_credentials'].nil?
+                = f.input :username, :input_html => {:class => "set-focus-here",:value => params['ldap_credentials']['username']}, :required => false
+                = f.input :password, :required => false
+                = f.input :active_tab, :as => :hidden, :input_html => {:value => "partners-and-customers-login"}
+              - else
+                = f.input :username, :input_html => {:class => "set-focus-here"}, :required => false
+                = f.input :password, :required => false
+                = f.input :active_tab, :as => :hidden, :input_html => {:value => "partners-and-customers-login"}
+              - unless params[:url].blank?
+                = f.input :redirect_url, :as => :hidden, :input_html => {:value => params[:url]}
+            #actions
+              = f.submit 'Login'
+              -#%label Don't Have an Account?
+              -#= link_to "Don't Have an Account", "http://www.tibcommunity.com/login!input.jspa?registerOnly=true", :class => "tibcommunity-register", :target => "_blank"
+              -#= link_to "Forgot password", "https://www.tibcommunity.com/emailPasswordToken!input.jspa", :class => "tibcommunity-register", :target => "_blank"
+              %input{:type => 'button', :value => "Don't Have an Account",:id=>'btn2', :onclick => "window.open('https://tibbr.tibcommunity.com/tibbr/web/signup');"}
+              %input{:type => 'button', :value => "Forgot password",:id=>'btn3', :onclick => "window.open('https://tibbr.tibcommunity.com/tibbr/web/login#');"}
+        #employee-login
+          %p.employee-login-header2
+            %b Enter your TIBCO email address and Active Directory password.
+          - semantic_form_for :ldap_credentials, :url => login_ldap_logins_path do |f|
+            %ul
+              - unless params['ldap_credentials'].nil?
+                = f.input :username, :input_html => {:class => "set-focus-here", :value => params['ldap_credentials']['username']}, :required => false, :label => "Email: (john@tibco.com)"
+                = f.input :password, :required => false, :label => "Active Directory Password:"
+                = f.input :active_tab, :as => :hidden, :input_html => {:value => "employee-login"}
+              - else
+                = f.input :username, :input_html => {:class => "set-focus-here"}, :required => false, :label => "Email: (john@tibco.com)"
+                = f.input :password, :required => false, :label => "Active Directory Password:"
+                = f.input :active_tab, :as => :hidden, :input_html => {:value => "employee-login"}
+              - unless params[:url].blank?
+                = f.input :redirect_url, :as => :hidden, :input_html => {:value => params[:url]}
+            #actions
+              = f.submit 'Login'
+              -#%label Don't Have an Account?
+              -#%input{:type => 'button', :value => "Don't Have an Account",:id=>'btn4', :onclick => "window.open('http://www.tibcommunity.com/login!input.jspa?registerOnly=true');"}
+              -#%input{:type => 'button', :value => "Forgot password",:id=>'btn5', :onclick => "window.open('https://www.tibcommunity.com/emailPasswordToken!input.jspa');"}
+              -#= link_to "Don't Have an Account", "http://www.tibcommunity.com/login!input.jspa?registerOnly=true", :class => "tibcommunity-register", :target => "_blank"
+              -#= link_to "Forgot password", "https://www.tibcommunity.com/emailPasswordToken!input.jspa", :class => "tibcommunity-register", :target => "_blank"

@@ -1,0 +1,98 @@
+<script type="text/javascript">
+parent.$('.notify-text').text("<%= @messages.count %>")
+</script>
+<div id="loading" style="width: 100%; height: 540px;position: relative;text-align: center ;" >
+  <img src="/images/ajax-loader1.gif" />
+</div>
+<div class="contact-form" style="display: none;">
+  <div class="wrap">
+    <div id="post">
+      <div id="product-tabs">
+        <ul id="post-tabs">
+          <li id="tib-post_tib-box" title="Comments for the current page of the documentation">
+            <a href="#tib-box" id="this-page" class="navigation-links" ></a>
+          </li>
+          <li id="tib-post_question-post"title="All Comments for the documentation">
+            <a href="#tib-box" id="this-product" class="navigation-links"></a>
+          </li>
+        </ul>
+
+        <%- if logged_in? && current_user_is_employee? %>
+            <div class="logout">
+              <a href="/tibbr_integration/logout">Logout</a>
+            </div>
+        <%end%>
+        <%=render 'post_comment' %>
+      </div>
+      <div class="comments">
+        <ul class="tibbr-list">
+          <%- unless @messages.blank? %>
+              <%- @messages.each do |message| %>
+                  <% unless message.nil? %>
+                      <li class="entry">
+                        <a href="#" class="tibbr-user-name"><%= show_tibbr_username(message['user']['first_name'],message['user']['last_name'])%></a>
+                        <p class="date-post"><span>Posted on: </span><%=Time.parse(message['created_at']).strftime("%B  %d, %Y at %I:%M %p")%></p>
+                        <div class="content" id="<%= message['id']%>">
+                          <% begin %>
+                              <%= message['content'].gsub("\n","<br>").html_safe %>
+                          <% rescue %>
+                              <%=message['content'].force_encoding('iso-8859-1').encode('utf-8').gsub("\n","<br>").html_safe %>
+                          <% end %>
+                        </div>
+                        <%- if logged_in? && current_user_is_employee? %>
+                            <p class="user-actions">
+                              <a class="reply-link" href="#">Reply</a>
+                              <%= show_delete_comment_link(message) %>
+                            </p>
+                        <% end %>
+                        <ul class="meta reply-list <%= "click-arrow" unless message['messages'].blank?%>">
+                          <%-  unless message['messages'].blank? %>
+                              <li class="reply-comments">
+                                <a class="profile-name" href="#">Click here to see Replies</a>
+                              </li>
+                              <%- message['messages'].each do |comment|%>
+                                  <% unless comment.nil? %>
+                                      <li class="info hidden" id="<%= comment['id'] %>" >
+                                        <p class="reply-info"><a href="#" class="profile-name tibbr-user-name"><%= show_tibbr_username(comment['user']['first_name'],comment['user']['last_name'])%></a>
+                                        <p class="date-post"><span>Posted on: </span><%=Time.parse(comment['created_at']).strftime("%B  %d, %Y at %I:%M %p")%><%= show_delete_reply_link(comment)  %>
+                                        <p class="content">
+                                        <% begin %>
+                                            <%= comment['content'].gsub("\n","<br>").html_safe %>
+                                        <% rescue %>
+                                            <%=comment['content'].force_encoding('iso-8859-1').encode('utf-8').gsub("\n","<br>").html_safe %>
+                                        <% end %>
+                                        </p>
+                                      </li>
+                                  <%end%>
+                              <%end%>
+                          <%end%>
+                        </ul>
+                      </li>
+                  <%end%>
+              <%end%>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+    var active_tab = "<%=@active_tab %>"
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

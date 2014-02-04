@@ -1,0 +1,11 @@
+%p#notice= notice
+
+%h1 Parent Group
+%p
+  %b
+    Name:
+    = @parent_group.name
+
+= link_to 'Edit', edit_parent_group_path(@parent_group)
+|
+= link_to 'Back', parent_groups_path

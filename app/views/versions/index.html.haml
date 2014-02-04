@@ -1,0 +1,29 @@
+%h1= "Versions of #{@product.name}"
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Version Number
+    %th Folder path
+    %th
+    %th
+    %th
+
+  - @version.each do |version|
+    %tr
+      %td= version.name
+      %td= version.description
+      %td= version.version_number
+      %td= version.folder_path
+      %td= link_to 'Show', product_version_path(version.product,version)
+      - if current_user
+        %td= link_to 'Edit', edit_product_version_path(version.product,version)
+        %td= link_to 'Destroy', product_version_path(version.product,version), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'Back to Product', product_path(@product)
+|
+= link_to 'New Version |', new_product_version_path if current_user
+= link_to "Products List", products_path

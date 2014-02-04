@@ -1,0 +1,17 @@
+
+%ul
+  - search_result[:actual_results].each_with_index do |res,index|
+    - title_link = res[1][:link_for_title]
+    - title = res[1].has_key?(:title) ? res[1][:title].html_safe : title_link
+    - more_results = res[1].has_key?(:more_results) ? res[1][:more_results] : {}
+    %li
+      = link_to title,title_link, :target => '_blank', :class => 'search-title document-view'
+      %p.search-description
+        = res[1][:description].html_safe
+      %p.search-description-link
+        = "#{res[1][:display_link]} - #{res[1][:size]} - #{res[1][:date]}"
+        -#= link_to "Cached", "#{root_url.chop}#{res[1][:cache_link]}", :target => '_blank',:class => 'cached'
+        -#
+        -#- unless more_results.blank?
+        -#  %p.more-links
+        -#    = link_to "[#{more_results[:text]}]",more_results[:link], :class => 'more-results'

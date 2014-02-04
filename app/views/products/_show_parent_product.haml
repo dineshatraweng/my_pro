@@ -1,0 +1,122 @@
+- if current_user.is_a?(Admin)
+  = javascript_include_tag 'document-sortable'
+  :javascript
+    $(document).ready(function(){
+     sortDocuments();
+    })
+
+:javascript
+    category_id = #{@product.groups.first.name.parameterize.to_json}
+    $(document).ready(function(){
+    if (typeof(_gaq)!= 'undefined')
+    {
+    _gaq.push(['_trackEvent', '#{@product.visibility}', 'visit', '#{@product.name}']);
+    }
+    })
+-if @versions.blank?
+  :javascript
+    $(document).ready(function()
+    {
+       product_id = #{@product.id}
+    });
+     -else
+  :javascript
+    $(document).ready(function()
+    {
+       product_id = #{@product.parent.id}
+    });
+#browse-tab
+  #side-bar
+    #search-box.ui-widget
+      = render :partial => 'find_products'
+
+    #tree-control
+      = link_to tag(:img,{:src => "/images/collapse.png", :class =>'pngFix'}),"#", :class => "collapse-all"
+      = link_to tag(:img,{:src => "/images/expand.png", :class =>'pngFix'}),"#", :class => "expand-all"
+
+    %ul#browse.filetree.treeview-famfamfam
+      = render :partial => 'product_list'
+
+  #main-content
+    -unless logged_in? && current_user_is_admin?
+      -unless @versions.blank?
+        #tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
+          %ul#tab-label.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all
+            %li.version
+              Versions:
+            - @versions.each do |version|
+              - if version.id == @product.id
+                %li.ui-state-default.ui-corner-top.ui-tabs-selected.ui-state-active
+                  %a{:href=>"tabs-1"}
+                    = "#{version.version_no}"
+              - else
+                %li.ui-state-default.ui-corner-top
+                  %a{:href=>"#{product_path(version)}"}
+                    = "#{version.version_no}"
+    #tabs-1.ui-tabs-panel.ui-widget-content.ui-corner-bottom
+      #breadcrumb #{@product.parent_groups(params[:category])}
+      #heading-wrap
+        %img.folder-big.pngFix{:src => "../images/folder-big.png", :alt => "folder-big.png"}
+        %h2.heading #{@product.name}
+        - if logged_in?
+          - unless current_user_is_employee?
+            .heading-button-wrap
+              -if current_user_is_admin?
+                %span#color-code
+                  = "OEM | " if @product.oem
+                  = set_access_flag(@product)
+              = link_to tag("img", { :src => "../images/edit.png", :alt => "edit.png"}),edit_product_path(@product), :class => 'heading-button-link',:title => "Edit #{@product.filtered_name.squeeze(" ")}"
+              = link_to tag("img", { :src => "../images/delete.png", :alt => "delete.png" }),@product, :onClick => delete_function("Are you sure you want to delete the product?"), :method => :delete,:class => 'heading-button-link',:title => "Delete #{@product.filtered_name.squeeze(" ")}"
+      - unless @product.is_root?
+        - unless !@product.versioned?
+          #rating
+            Rate the documentation:
+            #rating-star
+          %a{:id => "get-feedback"} Send feedback on documentation
+
+          - unless @product.description.blank?
+            %p= @product.description
+
+          - if @product.documents.blank?
+            %p.notif= "No Documents Added."
+          - else
+
+            %div
+              %ul.product-docs
+                - documents = @product.documents.order('document_order')
+                - unless documents.nil?
+                  - documents.each do |document|
+                    - if show_document_if_link_exists?(document)
+                      %li.ui-state-default{:id => "document_#{document.id}",:style => "#{'background: none repeat scroll 0 0 #FFE0E0;' if current_user_is_admin? && !link_is_broken?(document) }"}
+                        - dt = get_extension_from_url(document.link)
+                        - draggable = current_user.is_a?(Admin) ? tag(:img,{:class => "grippy",:src => "/images/grippy.png"}) : ""  if documents.size > 1;
+                        = link_to tag(:img,{:class =>"pngFix", :src => display_document_icon(dt), :alt => "#{document.name}"}) + draggable + document.name , document_link(@product,document.link), :target => "_blank", :class =>"product-name-link document-view"
+                        - if logged_in?
+                          - unless current_user_is_employee?
+                            .mc-button-wrap
+                              -#= link_to tag("img", { :src => "../images/oc_update.png", :alt => "oc.png" }),out_of_cycle_product_document_path(@product,document),:title => 'mark as out of cycle', :class => 'mc-button-link ofc'
+                              = image_tag("../images/oc_update.png",{:alt => "oc.png",:name => out_of_cycle_product_document_path(@product,document),:title => 'mark as out of cycle', :class => 'ofc'})
+                              = link_to tag("img", { :src => "../images/edit-small.png", :alt => "edit-small.png" }),edit_product_document_path(@product,document), :class => 'mc-button-link',:title => "Edit #{document.name.squeeze(" ")}"
+                              = link_to tag("img", { :src => "../images/delete-small.png", :alt => "delete-small.png" }),product_document_path(@product,document), :onClick => delete_function("Are you sure you want to delete the document?"), :method => :delete,:class => 'mc-button-link',:title => "Delete #{document.name.squeeze(" ")}"
+          %p
+            - if logged_in?
+              -  if current_user.is_a?(Admin)
+                = link_to "Add Document", new_product_document_path(@product), :class => 'logout',:title => "Add new document to #{@product.filtered_name}"
+                = link_to "Save Document Order", document_order_product_documents_path(@product), :class => "save-document-order" if ( !documents.nil? && documents.size != 1);
+            = link_to "Download All",document_link(@product,"#{@product.slug}_documentation.zip") if ( !documents.nil? && has_a_valid_document_link(documents));
+
+        = hidden_field_tag "productID", @product.id
+        = hidden_field_tag "productRating"
+        = hidden_field_tag "productName", @product.name
+        #feedback{:style => 'display:none; overflow:hidden;'}
+          %iframe{:src => "#{feedback_product_url(@product)}",:id => "iframe_form", :name => "iframe_form", :onload => "insertProductName()", :frameborder => "0", :scrolling => "no"}
+      - else
+        %div
+          %ul.product-docs
+            - versions = @product.children.select{|s| s.order}
+              - unless versions.nil?
+                - versions.each do |version|
+                  %li.ui-state-default{:id => "document_#{document.id}",:style => "#{'background: none repeat scroll 0 0 #FFE0E0;' if current_user_is_admin? && !link_is_broken?(document) }"}
+                    - dt = get_extension_from_url('cc.linj')
+                    - draggable = current_user.is_a?(Admin) ? tag(:img,{:class => "grippy",:src => "/images/grippy.png"}) : ""  if documents.size > 1;
+                    = link_to tag(:img,{:class =>"pngFix", :src => display_document_icon(dt), :alt => "#{document.name}"}) + draggable + version.name , "#" , :target => "_blank", :class =>"product-name-link document-view"

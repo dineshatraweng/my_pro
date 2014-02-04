@@ -1,0 +1,41 @@
+-#-----------------------------------------------------------------------------------------
+-# ---------------------- Bread Crumbs Start----------------------------------------------------
+-#-----------------------------------------------------------------------------------------
+-#- group.products.each do |product|
+-#  %li
+-#    = parent.blank? ? "#{group.name} > " : "#{parent} > #{group.name} > "
+-#    = link_to product.name,product
+-#- group.children.each do |child|
+-#  = render :partial => 'shared/az_partial', :locals => {:group => child, :parent => (parent.blank? ? "#{group.name}" : "#{parent} > #{group.name}")}
+-#-----------------------------------------------------------------------------------------
+-# ---------------------- Bread Crumbs End----------------------------------------------------
+-#-----------------------------------------------------------------------------------------
+
+-#-----------------------Nested Representation Start--------------------------------------
+-#%ul.group-name-wrap
+-#  %li.group-name= group.name
+-#
+-#- unless group.children.blank?
+-#  %ul.group-children
+-#    - group.children.each do |child|
+-#      - if !child.children.blank? || !child.products.blank?
+-#        %li.child-product-list= render :partial => "shared/az_partial", :locals => {:group => child, :parent => ""}
+-#- unless group.products.blank?
+-#  %ul.products-for-group
+-#    - group.products.each do |product|
+-#      %li.root-product-list= link_to product.name,product
+-#-----------------------Nested Representation End--------------------------------------
+
+%ul.group-children
+  %li.child-product-list
+  - group.products.each do |p|
+    %li= link_to p.name,p
+%ul
+  - group.children.each do |child|
+    - unless child.all_products_in_hierarchy.blank?
+      %li= child.name
+      %li
+        %ul
+          - child.all_products_in_hierarchy.each do |cp|
+            - cp.each do |p|
+              %li= link_to p.name,p

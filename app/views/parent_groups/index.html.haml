@@ -1,0 +1,19 @@
+%h1 Listing parent Groups
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @parent_groups.each do |parent_group|
+    %tr
+      %td= parent_group.name
+      %td= link_to 'Show', parent_group
+      %td= link_to 'Edit', edit_parent_group_path(parent_group)
+      %td= link_to 'Destroy', parent_group, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Parent group', new_parent_group_path

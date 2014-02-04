@@ -1,0 +1,337 @@
+---
+creationDate: 1209446456903
+description: ''
+groupID: 1000
+modificationDate: 1384275208280
+name: TIBCO Employees
+---
+creationDate: 1209446473683
+description: !!null 
+groupID: 1001
+modificationDate: 1384377366565
+name: TIBCO Customers
+---
+creationDate: 1209446485940
+description: ''
+groupID: 1002
+modificationDate: 1384442489632
+name: TIBCO Partners
+---
+creationDate: 1209446496834
+description: !!null 
+groupID: 1003
+modificationDate: 1384497823197
+name: TIBCO Guests
+---
+creationDate: 1209446528935
+description: !!null 
+groupID: 1004
+modificationDate: 1210017711179
+name: TUCON 08 Authors
+---
+creationDate: 1209446551783
+description: !!null 
+groupID: 1005
+modificationDate: 1210017691988
+name: TUCON 08 Discussion Leaders
+---
+creationDate: 1220560582201
+description: Product Marketing Managers for ActiveMatrix
+groupID: 1006
+modificationDate: 1220560683804
+name: ActiveMatrix PMM
+---
+creationDate: 1242254963571
+description: !!null 
+groupID: 1008
+modificationDate: 1254958220929
+name: bloggers
+---
+creationDate: 1244768728676
+description: Silver Beta Trial Users
+groupID: 1009
+modificationDate: 1348043950030
+name: SilverBeta
+---
+creationDate: 1253144103962
+description: ''
+groupID: 1010
+modificationDate: 1310670322166
+name: SilverBPMBeta
+---
+creationDate: 1259893891963
+description: !!null 
+groupID: 1011
+modificationDate: 1259895066119
+name: User Group Italy
+---
+creationDate: 1264781252979
+description: !!null 
+groupID: 1012
+modificationDate: 1336723993607
+name: SupportGuides Workgroup
+---
+creationDate: 1271124276240
+description: !!null 
+groupID: 1014
+modificationDate: 1271170861573
+name: User Group SA
+---
+creationDate: 1271711626128
+description: Silver CAP GA entitlement management
+groupID: 1015
+modificationDate: 1303923158394
+name: SilverCAP
+---
+creationDate: 1271711851253
+description: Silver BPM entitlement management
+groupID: 1016
+modificationDate: 1304437469623
+name: SilverBPM
+---
+creationDate: 1271711901449
+description: Silver Integrator entitlement management
+groupID: 1017
+modificationDate: 1284377418213
+name: SilverBW
+---
+creationDate: 1271809892411
+description: SilverIntegratorTest
+groupID: 1018
+modificationDate: 1282062122783
+name: SilverBWTest
+---
+creationDate: 1275631518794
+description: This group will include only TUCON2010 attendees for restrictive material
+groupID: 1019
+modificationDate: 1325791964338
+name: TUCON2010
+---
+creationDate: 1276082470741
+description: !!null 
+groupID: 1020
+modificationDate: 1282565049766
+name: Gaming
+---
+creationDate: 1278587158927
+description: !!null 
+groupID: 1021
+modificationDate: 1361773667649
+name: AD Aliases
+---
+creationDate: 1279532625933
+description: This group will include only NOW2010 attendees for restrictive material
+groupID: 1022
+modificationDate: 1290106521271
+name: NOW2010
+---
+creationDate: 1280133457534
+description: !!null 
+groupID: 1023
+modificationDate: 1295535349864
+name: Admin Testing
+---
+creationDate: 1301996082990
+description: !!null 
+groupID: 1025
+modificationDate: 1301996082990
+name: ! 'Generated_1: TIBCO Employees'
+---
+creationDate: 1301996083144
+description: !!null 
+groupID: 1026
+modificationDate: 1302500424446
+name: ! 'Generated_2: TIBCO Employees'
+---
+creationDate: 1301996083197
+description: !!null 
+groupID: 1027
+modificationDate: 1301996083197
+name: ! 'Generated_3:'
+---
+creationDate: 1301996083210
+description: !!null 
+groupID: 1028
+modificationDate: 1338356519748
+name: ! 'Generated_4:'
+---
+creationDate: 1301996235996
+description: !!null 
+groupID: 1029
+modificationDate: 1336043592807
+name: ! 'Generated_5:'
+---
+creationDate: 1301996240999
+description: !!null 
+groupID: 1030
+modificationDate: 1301996240999
+name: ! 'Generated_6: TIBCO Guests'
+---
+creationDate: 1301996241073
+description: !!null 
+groupID: 1031
+modificationDate: 1302500424516
+name: ! 'Generated_7: TIBCO Guests'
+---
+creationDate: 1301996241117
+description: !!null 
+groupID: 1032
+modificationDate: 1350888539038
+name: ! 'Generated_8:'
+---
+creationDate: 1301996362585
+description: !!null 
+groupID: 1033
+modificationDate: 1336043605479
+name: ! 'Generated_9:'
+---
+creationDate: 1301996367161
+description: !!null 
+groupID: 1034
+modificationDate: 1301996367161
+name: ! 'Generated_10: TIBCO Guests'
+---
+creationDate: 1301996367226
+description: !!null 
+groupID: 1035
+modificationDate: 1302500424525
+name: ! 'Generated_11: TIBCO Guests'
+---
+creationDate: 1301996367249
+description: !!null 
+groupID: 1036
+modificationDate: 1350888457913
+name: ! 'Generated_12:'
+---
+creationDate: 1301996486486
+description: !!null 
+groupID: 1037
+modificationDate: 1336043521514
+name: ! 'Generated_13:'
+---
+creationDate: 1301996490930
+description: !!null 
+groupID: 1038
+modificationDate: 1301996490930
+name: ! 'Generated_14: TIBCO Guests'
+---
+creationDate: 1301996490998
+description: !!null 
+groupID: 1039
+modificationDate: 1302500424575
+name: ! 'Generated_15: TIBCO Guests'
+---
+creationDate: 1301996491020
+description: !!null 
+groupID: 1040
+modificationDate: 1350888470196
+name: ! 'Generated_16:'
+---
+creationDate: 1301996616389
+description: !!null 
+groupID: 1041
+modificationDate: 1336043546470
+name: ! 'Generated_17:'
+---
+creationDate: 1301996620792
+description: !!null 
+groupID: 1042
+modificationDate: 1301996620792
+name: ! 'Generated_18: TIBCO Guests'
+---
+creationDate: 1301996620848
+description: !!null 
+groupID: 1043
+modificationDate: 1302500424583
+name: ! 'Generated_19: TIBCO Guests'
+---
+creationDate: 1301996620917
+description: !!null 
+groupID: 1044
+modificationDate: 1350888480254
+name: ! 'Generated_20:'
+---
+creationDate: 1301996745582
+description: !!null 
+groupID: 1045
+modificationDate: 1336043556796
+name: ! 'Generated_21:'
+---
+creationDate: 1301996750258
+description: !!null 
+groupID: 1046
+modificationDate: 1301996750258
+name: ! 'Generated_22: TIBCO Guests'
+---
+creationDate: 1301996750348
+description: !!null 
+groupID: 1047
+modificationDate: 1302500424592
+name: ! 'Generated_23: TIBCO Guests'
+---
+creationDate: 1301996750390
+description: !!null 
+groupID: 1048
+modificationDate: 1350888492966
+name: ! 'Generated_24:'
+---
+creationDate: 1301996826689
+description: !!null 
+groupID: 1049
+modificationDate: 1301996826689
+name: ! 'Generated_25: TIBCO Guests'
+---
+creationDate: 1301996826744
+description: !!null 
+groupID: 1050
+modificationDate: 1350888501816
+name: ! 'Generated_26:'
+---
+creationDate: 1317741608900
+description: !!null 
+groupID: 1052
+modificationDate: 1317742618128
+name: TIBCO Support
+---
+creationDate: 1318862091142
+description: User attended TUCON 2011
+groupID: 1053
+modificationDate: 1325807061441
+name: TUCON2011 attentdess
+---
+creationDate: 1320422046408
+description: !!null 
+groupID: 1054
+modificationDate: 1320480128473
+name: ! 'Open Spirit '
+---
+creationDate: 1326650275589
+description: !!null 
+groupID: 1055
+modificationDate: 1328700985606
+name: Soa User Group
+---
+creationDate: 1337842943297
+description: ! 'Contains users registered using their corporate email address and
+  they should not be Customer/Partner/Employee '
+groupID: 1056
+modificationDate: 1384497822897
+name: CorporateUsers
+---
+creationDate: 1357714478808
+description: Community administrators
+groupID: 1058
+modificationDate: 1357715007976
+name: TERR Admins
+---
+creationDate: 1361866766709
+description: Create access For Exclusive Public Domain Email addresses.
+groupID: 1060
+modificationDate: 1365199729244
+name: Individual Contractors
+---
+creationDate: 1369302598148
+description: !!null 
+groupID: 1061
+modificationDate: 1369303662567
+name: BW6 BETA users

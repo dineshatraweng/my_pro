@@ -1,0 +1,11 @@
+= semantic_form_for(@parent_group) do |f|
+  - if @parent_group.errors.any?
+    %div#error_explanation
+      %h2= "#{pluralize(@parent_group.errors.count, "error")} prohibited this parent_group from being saved:"
+
+      %ul
+        - @parent_group.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.input :name
+  = f.submit

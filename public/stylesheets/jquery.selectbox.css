@@ -1,0 +1,98 @@
+@CHARSET "UTF-8";
+
+#content-wrapper #content #main-content .jquery-selectbox {
+  position: relative;
+  height: 25px;
+  border: 1px solid #dedede;
+  width: 280px !important;
+  z-index: 0;
+  float: left;
+  display: inline;
+  margin: 0px;
+	font-size: 9px;
+	font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color: #444;
+	padding: 0px;
+  background-color: #ffffff;
+	background-image: url("../images/select-images/bg-TextField.gif");
+}
+#content-wrapper #content #main-content .jquery-selectbox.selecthover {
+	border-color: #dedede;
+	background-color: #ffffff;
+	/*background-image: url("../images/select-images/bg-TextFieldFocused.gif");*/
+	z-index: 700;
+}	
+#content-wrapper #content #main-content .jquery-selectbox .jquery-selectbox-currentItem {
+
+	padding: 5px;
+  color: #777777;
+	white-space: nowrap;
+	display: block;
+	overflow: hidden;
+  clear: none;
+  line-height: 1;
+  width: 237px !important;
+ 
+}
+
+#content-wrapper #content #main-content .jquery-selectbox .jquery-selectbox-list {
+	display: none;
+	position: absolute;
+	top: 26px;
+	padding: 5px;
+	left: 0px;
+	background: #ffffff;
+	width: 269px !important;
+   height: 250px !important;
+   *height: 240px !important;
+	 
+
+	overflow-x: hidden;
+	overflow-y: auto;
+	z-index: 1000;
+	border-left: 1px solid #dedede;border-bottom: 1px solid #dedede;border-right: 1px solid #dedede;
+}
+#content-wrapper #content #main-content .jquery-selectbox .jquery-selectbox-moreButton {
+	/*
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	*/
+	float: right;
+	background: url("../images/select-images/lay-selectMoreButton.gif");
+	width: 31px;
+	height: 25px;
+	cursor: pointer;
+}
+/*
+#content-wrapper #content #main-content .jquery-selectbox .jquery-selectbox-moreButton.morebuttonhover {
+	background: url("../images/select-images/lay-selectMoreButtonHover.gif");
+}
+*/
+
+
+#content-wrapper #content #main-content .jquery-selectbox .jquery-selectbox-item.listelementhover {
+	background: #dedede;
+	color: #777777;
+}
+
+
+#content-wrapper #content #main-content .jquery-selectbox .jquery-selectbox-item {
+    clear: none;
+    float: none;
+    color: #777777;   
+    font-family: tahoma;
+    font-size: 12px;
+    line-height: 1.5;   
+    cursor: pointer;
+    display: block;
+    padding: 0.2em 0;
+
+}
+
+/** ERROR classes **/
+#content-wrapper #content #main-content form .error .jquery-selectbox {
+	color: #ffffff;
+	border-color: #d4d4d4;
+	/*background-image: url("../images/select-images/bg-TextFieldError.gif");*/
+}

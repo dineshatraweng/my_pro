@@ -1,0 +1,264 @@
+default:
+
+  report_day: "monday"
+
+  app:
+    host: "http://50.19.252.212"
+    name: Product Documentation
+
+  docs:
+    host: "http://50.19.252.212"
+    url: 'http://localhost:3000'
+    proxy_path: 'doc_remote'
+
+  site_url: 'https://docs.tibco.com'
+
+  ftp_root: '/home/dinesh/Dinesh/work/lib/'
+  win_ftp_root: '/home/dinesh/Dinesh/work/win-root/'
+
+  ftp_uid: '1000'
+  ftp_gid: '1002'
+
+  ftp_username: 'docsteam'
+  ftp_groupname: 'docsite'
+
+  product:
+    http_path: 'www.webdiggs.net/'
+
+  gsa:
+    url: "http://na-h-mktgsa4.tibco.com"
+    collections:
+      emp: "36756933"
+      pub: "782542"
+  path:
+    employee: "emp"
+    public: "pub"
+
+  authorized_ips: "115.248.175.50,65.125.200.73,127.0.0.1,65.125.200.85"
+
+  search:
+    filter: '0'
+
+  ldap:
+    host: "172.16.0.53"
+    port: 389
+    username: "cn=Administrator, cn=Users, dc=raw-win-xd8"
+    password: "raw123"
+    search_base: "dc=raw-win-xd8"
+
+  tibcommunity:
+#    authentication_url: "https://dev.tibcommunity.com/a/users/login.json"
+    authentication_url: "https://tibbr.tibcommunity.com/a/users/login.json"
+    cookie_domain: "tibcommunity.com"
+    key: "t1bc0r0cks1s@key"
+    iv: "raw123"
+    logout_url: "https://www.tibcommunity.com/logout-user.jspa"
+
+
+  google_analytics:
+    account: "UA-28210000-1"
+
+  smtp_settings:
+    address: "smtp.gmail.com"
+    port: "587"
+    username: "webmaster@raweng.com"
+    password: "raw123"
+    authentication: "plain"
+    domain: "raweng.com"
+    enable_starttls_auto: true
+
+  admin:
+    email: 'pankaj.gupta@raweng.com'
+    raw_team: 'pankaj.gupta@raweng.com'
+
+  formvine:
+    account: '/data/5534557129/8854/table1'
+    product_name: 'a107'
+    product_url: 'a108'
+    product_rating: 'a109'
+    comment: 'a102'
+    username: 'a100'
+    email: 'a101'
+    projectid: '8854'
+    spaceid: '5534557129'
+
+  update_check_time: 24.hours
+  archive_file_time: 1.week
+
+  tibbr:
+    host_domain: "http://tibco-docs.tibbr.com"
+    login: "tibbradmin"
+    password: "Tibbr2012"
+    auth_token: "UpaQtr5etslpFWKMsOif0K3y3vU/BlR7OtQzzl1KMcA="
+    client_key: "TibbrHybrid"
+    user_password: "UpaQtretg54yr5#etslp%"
+    employee_password: "SwanTibbr2000"
+    root_subject: "development"
+
+  product_require_login_message: "* To access this product, please login."
+
+  document_require_login_message: "* To access this document, please login."
+
+  reports_path: '/public/reports'
+
+  user_domains:
+    emails: "%w(pankaj.gupta@raweng.com kirti.waidande@raweng.com riddhi.agrawal@raweng.com rohit.pal@raweng.com paramod.mishra@raweng.com)"
+    password: 'raweng123'
+
+localdev:
+  inherit: default
+
+
+
+test:
+  inherit: default
+
+production:
+  inherit: default
+
+  report_day: "monday"
+
+  app:
+    host: "http://50.19.252.212"
+
+  docs:
+    host: "http://50.19.252.212"
+    url: 'https://docs.tibco.com'
+    proxy_path: 'doc_remote'
+
+  ftp_root: '/ftproot/vsftpd'
+  win_ftp_root: '/windows/wwwroot'
+
+  ftp_uid: '501'
+  ftp_gid: '501'
+
+  authorized_ips: "115.248.175.50,65.125.200.73,127.0.0.1,172.16.0.146,114.143.99.82,65.125.200.85,65.125.200.99"
+
+  ldap:
+    host: "auth.tibco.com"
+    port: 636
+    username: "CN=SalesCentral Authentication,OU=Service Accounts,DC=na,DC=tibco,DC=com"
+    password: "Lu0WxsTT"
+    search_base: "dc=tibco,dc=com"
+
+
+  google_analytics:
+    account: "UA-28375153-1"
+
+  admin:
+    email: 'tsi-pubs-managers@tibco.com,tibcodocs@raweng.com'
+    raw_team: 'tibcodocs@raweng.com'
+
+  formvine:
+    account: '/data/8953119621/3100/table1'
+    product_name: 'a100'
+    product_url: 'a103'
+    product_rating: 'a104'
+    comment: 'a105'
+    username: 'a102'
+    email: 'a101'
+    projectid: '3100'
+    spaceid: '8953119621'
+
+  tibbr:
+    host_domain: "http://tibco-docs.tibbr.com"
+    login: "tibbradmin"
+    password: "Tibbr2012"
+    auth_token: "UpaQtr5etslpFWKMsOif0K3y3vU/BlR7OtQzzl1KMcA="
+    client_key: "TibbrHybrid"
+    user_password: "UpaQtretg54yr5#etslp%"
+    employee_password: "SwanTibbr2000"
+    root_subject: "tibco_docsite"
+
+
+development:
+  inherit: default
+  report_day: "monday"
+  app:
+    host: "http://50.19.90.130"
+    name: Product Documentation
+
+  docs:
+    host: "http://50.19.90.130"
+    url: 'https://dev-tibcodocs.cloudthis.com'
+    proxy_path: 'doc_remote'
+
+  ftp_root: '/ftproot/vsftpd'
+  win_ftp_root: '/windows/wwwroot'
+
+  ftp_uid: '501'
+  ftp_gid: '501'
+
+  authorized_ips: "115.248.175.50,65.125.200.73,127.0.0.1,172.16.0.146,114.143.99.82,65.125.200.85"
+
+  ldap:
+    host: "auth.tibco.com"
+    port: 636
+    username: "CN=SalesCentral Authentication,OU=Service Accounts,DC=na,DC=tibco,DC=com"
+    password: "Lu0WxsTT"
+    search_base: "dc=tibco,dc=com"
+
+  admin:
+    email: 'tibcodocs@raweng.com'
+    raw_team: 'tibcodocs@raweng.com'
+
+  tibbr:
+      host_domain: "http://tibco-docs.tibbr.com"
+      login: "tibbradmin"
+      password: "Tibbr2012"
+      auth_token: "UpaQtr5etslpFWKMsOif0K3y3vU/BlR7OtQzzl1KMcA="
+      client_key: "TibbrHybrid"
+      user_password: "UpaQtretg54yr5#etslp%"
+      employee_password: "SwanTibbr2000"
+      root_subject: "staging"
+
+
+staging:
+  inherit: default
+
+  report_day: "monday"
+
+  app:
+      host: "http://184.73.247.196"
+
+  ftp_root: '/ftproot/vsftpd'
+  win_ftp_root: '/windows/wwwroot'
+
+  ftp_uid: '502'
+  ftp_gid: '506'
+
+
+  authorized_ips: "115.248.175.50,65.125.200.73,127.0.0.1,172.16.0.146,114.143.99.82,65.125.200.85,65.125.200.99"
+
+  ldap:
+    host: "auth.tibco.com"
+    port: 636
+    username: "CN=SalesCentral Authentication,OU=Service Accounts,DC=na,DC=tibco,DC=com"
+    password: "Lu0WxsTT"
+    search_base: "dc=tibco,dc=com"
+
+  admin:
+    email: 'sanjay.salunkhe@raweng.com'
+    raw_team: 'riddhi.agrawal@raweng.com'
+
+  formvine:
+    account: '/data/8953119621/3100/table1'
+    product_name: 'a100'
+    product_url: 'a103'
+    product_rating: 'a104'
+    comment: 'a105'
+    username: 'a102'
+    email: 'a101'
+    projectid: '3100'
+    spaceid: '8953119621'
+
+
+  tibbr:
+    host_domain: "http://tibco-docs.tibbr.com"
+    login: "tibbradmin"
+    password: "Tibbr2012"
+    auth_token: "UpaQtr5etslpFWKMsOif0K3y3vU/BlR7OtQzzl1KMcA="
+    client_key: "TibbrHybrid"
+    user_password: "UpaQtretg54yr5#etslp%"
+    employee_password: "SwanTibbr2000"
+    root_subject: "staging2"

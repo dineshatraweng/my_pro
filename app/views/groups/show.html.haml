@@ -1,0 +1,17 @@
+%b= "#{@group.name} Group"
+
+%div
+  - unless @group.products.blank?
+    %ul{:style => "list-style:none;"}
+      - @group.products.each do |p|
+        %li
+          = p.name
+
+  - if @group.has_children?
+    = nested_groups @group.children.arrange(:order => :created_at)
+
+= link_to 'Edit', edit_group_path(@group)
+|
+= link_to 'Back', groups_path
+|
+= link_to 'Delete', @group, delete_function("Are you sure you want to delete the group?"), :method => :delete

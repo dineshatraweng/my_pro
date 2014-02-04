@@ -1,0 +1,680 @@
+
+/* @ group Contact Us side-tab */
+/*#posting-tab-wrap .logout{
+    background: url("../images/button-bg.png") repeat scroll 0 0 transparent;
+    margin: 8px;
+    padding: 5px 10px;
+    width: 35px;
+    border:1px solid #ccc;
+    text-align:center;
+}
+#posting-tab-wrap .logout a{
+    color: #666666;
+    font-size: 14px;
+}*/
+html,body{
+    font-family:"Helvetica Neue",Arial,sans-serif,Helvetica !important;
+    overflow:hidden;
+}
+li{
+    list-style:none;
+}
+label{
+    color: #777777;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.3em;
+    margin-left: 5px;
+    padding: 6px 10px;
+    width: 100px;
+}
+
+input.form-text, form textarea{
+    border: 1px solid #DEDEDE;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 0 5px #DEDEDE inset;
+    color: #777777;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 4px 0 8px 15px;
+    padding: 6px 10px;
+    width: 260px;
+}
+input[type="submit"]{
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    color: #777777;
+    cursor: pointer;
+    font-family: "Helvetica",Arial,sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 5px 0 0 15px;
+    padding: 5px;
+    filter:chroma(color=#000000);
+    outline: 0 none;
+
+}
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button{
+   font-family:"Helvetica Neue",Arial,sans-serif,Helvetica; 
+}
+.placeholder
+{
+  color: #aaa;
+}
+#partners-and-customers-login a, #employee-login a{
+    font-size: 10px;
+    padding: 0 2px 0 0;
+    text-decoration: underline;
+    *position: relative;
+    *bottom: 20%;
+}
+.contact-us {
+    position: fixed;
+    right: -400px;
+    top: 4.5%;
+    z-index: 21;
+}
+.contact-us .slide-handle {
+display: block;
+width: 40px;
+height: 120px;
+text-indent: -20000em;
+background: url("../images/comment_open_new.png") no-repeat scroll center center #4083C5;
+position: absolute;
+left: -38px;
+padding-top: 15px;
+top: 40%;
+}
+.contact-us .contact-form {
+    width: 400px;
+    font-size: 0.88em;
+}
+.contact-us .contact-form .wrap {
+background-color: white;
+border: 2px solid #4083C5;
+min-height: 530px;
+overflow: hidden;
+position: relative;
+width: 100%;
+}
+
+.contact-us .contact-form h2 {
+    color: #666666;
+    font-size: 0.88em;
+    line-height: 1.6em;
+    padding-bottom: 20px;
+}
+.contact-us .contact-form fieldset {
+    border: 0;
+    padding: 0;
+    text-align:center;
+}
+.contact-us .contact-form fieldset textarea {
+    resize: vertical;
+}
+.contact-us .contact-form fieldset p {
+    font-size: 1em;
+}
+.contact-us .contact-form fieldset.last {
+    margin: 0;
+}
+.contact-us-bg {
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+}
+/* @end */
+.conatct-details {
+    padding: 0 10px;
+}
+.conatct-details p {
+    margin-bottom: 5px;
+}
+.conatct-details .btn .arrow.next {
+    border-left-color: #ffffff;
+}
+.conatact-details-wrap {
+    width: 540px;
+}
+.conatact-details-wrap .details-fields {
+    background-color: #cccccc;
+    background-image: -webkit-linear-gradient(top ,#ffffff 0% ,#cccccc 100%);
+    background-image: -moz-linear-gradient(top ,#ffffff 0% ,#cccccc 100%);
+    background-image: -ms-linear-gradient(top ,#ffffff 0% ,#cccccc 100%);
+    background-image: -o-linear-gradient(top ,#ffffff 0% ,#cccccc 100%);
+    background-image: linear-gradient(top ,#ffffff 0% ,#cccccc 100%);
+    border: 1px solid #ddd;
+    -webkit-box-shadow: 0 0 3px #cccccc;
+    -moz-box-shadow: 0 0 3px #cccccc;
+    box-shadow: 0 0 3px #cccccc;
+    margin: 30px 0 20px;
+    padding: 20px 15px 20px 25px;
+}
+.conatact-details-wrap .details-fields fieldset {
+    padding: 5px 0;
+}
+.conatact-details-wrap .details-fields fieldset .textbox {
+    width: 45%;
+    margin-right: 10px;
+}
+.conatact-details-wrap .details-fields fieldset textarea {
+    width: 95%;
+    resize: none;
+}
+.conatact-details-wrap .note {
+    font-weight: bold;
+    color: #666666;
+}
+.conatact-details-wrap .note a {
+    color: #666666;
+    text-decoration: underline;
+}
+.conatact-details-wrap .action-link {
+    float: right;
+}
+.contact-us .tb-content-footer {
+    bottom: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+}
+.contact-us p.tb-footer{
+    background: url("../images/tibbr-logo.png") no-repeat scroll 20px 60% #C1D72E;
+    color: #FFFFFF;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 15px;
+    text-align: center;
+    width: 100%;
+    padding:10px 0;
+}
+
+/* Login content screen1*/
+#login-tabs{
+    border:0 none;
+}
+.login-wrap{
+    background: url("../images/login-bg.png") repeat-x scroll 50% 50% #FFFFFF;
+    border: 1px solid #B7B7B7;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 5px #888888;
+    clear: both;
+    margin: 0 auto 20px;
+    padding: 0;
+    width: 356px;
+    *min-height:190px;
+    overflow: hidden;
+}
+.login-wrap .error_explanation{
+    height: 40px;
+    margin-top: 15px;
+}
+.login-wrap h2.error_details, #content-wrapper #content-login #admin-login-wrap h2.error_details{
+    background-color: #FCDADA;
+    color: red;
+    font-size: 12px;
+    margin: 0 auto;
+    padding: 10px 14px;
+    text-align: center;
+    width: 280px;
+}
+#partners-and-customers-login, #employee-login{
+    padding:0;
+    margin:8px 10px 15px;
+}
+
+/* Login content screen1*/
+#posting-tab-wrap, .posting-tab-wrap{
+    background: none repeat-x scroll 50% 50% #FFFFFF;
+    border: medium none;
+    font-size: 100%;
+    padding: 0;
+    z-index: 999;
+}
+#posting-tab-wrap h2, .posting-tab-wrap h2{
+    color: #8B8B8B;
+    float: left;
+    margin: 5px 0 0 10px;
+    vertical-align: middle;
+}
+#posting-tab-wrap .logout{
+    float: right;
+    font-size: 13px;
+    margin-top: -20px;
+    width:20%;
+}
+#tib-box, #tib-product {
+    background: none repeat scroll 0 0 #F1F1F1;
+    border: 1px solid #CCCCCC;
+    border-radius: 0 0 0 0;
+    float: left;
+    padding: 5px 0;
+    width: 100%;
+}
+#posting_tags {
+    overflow: hidden;
+    padding:0 10px;
+}
+#posting_tags fieldset textarea, .reply-textarea{
+    font-family:"Helvetica Neue",Arial,sans-serif,Helvetica;
+    border: 1px solid #CCCCCC;
+    font-size:12px;
+    resize: none;
+    padding: 4px;
+    color:#666;
+}
+#tib-text {
+    width: 100%;
+}
+
+.comment-reply {
+color: white;
+cursor: pointer;
+font-size: 11px;
+display: block;
+font-weight: bold;
+padding: 4px 0;
+border: none;
+}
+#tib-btn, .reply-box button {
+background: #4083C5;
+cursor: pointer;
+float: right;
+height: 11px;
+text-align: center;
+width: 60px;
+font-weight: bold;
+border: none;
+margin: 4px 0 0;
+}
+.reply-btn {
+background: #4083C5;
+float: right;
+height: 19px;
+width: 60px;
+margin: 8px 9px 8px 0;
+text-align: center;
+}
+#posting-tab-wrap ul#post-tabs{
+    background: none repeat scroll 0 0 transparent !important;
+    border: medium none !important;
+    height: 28px;
+    width: 65%;
+}
+#product-tabs{
+    padding:0;
+    border:0;
+}
+#product-tabs ul{
+    padding: 15px 0 0 10px;
+    display:block;
+}
+#product-tabs ul li{
+    cursor:pointer;
+}
+#product-tabs ul li a{
+    display:block;
+    padding: 15px 20px;
+    *padding: 8px 20px;
+}
+/*#product-tabs .ui-state-default{
+ background:none!important;
+}*/
+
+#product-tabs .ui-tabs-selected, #product-tabs .ui-state-active {
+    background:#F1F1F1!important;
+}
+#product-tabs .ui-state-default, #product-tabs .ui-state-hover{
+    border:1px solid #D3D3D3;
+}
+#product-tabs .ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a{
+    font-size:12px;
+    color:#666;
+    font-weight:normal;
+}
+.logout{
+    float: right;
+    background: url("../images/login.png") no-repeat scroll 0 0 transparent;
+    margin-top: -21px;
+    padding-left: 17px;
+    width: 16%;
+    font-size:12px;
+    *line-height: 1.2;
+}
+.logout a{
+    color: #adadad;
+}
+.login {
+text-align: center;
+margin: 10px auto;
+background: #4083C5;
+width: 100px;
+border: 1px solid #4083C5;
+}
+.login a {
+display: block;
+font-size: 12px;
+padding: 6px;
+color: white;
+font-weight: bold;
+}
+
+/*Comments section*/
+.comments{
+    display: block;
+    float: left;
+    max-height: 380px;
+    overflow-y: auto;
+    padding: 10px;
+    width: 95%;
+    *overflow-x: hidden;
+}
+.comments ul.tibbit-list{
+    overflow: hidden;
+}
+.comments a{
+    font-weight:bold;
+    font-size:12px;
+    color:#00568D;
+    cursor: pointer;
+}
+.comments .reply a{
+    font-weight:normal;
+    font-size:10px;
+}
+.reply-content{
+    padding-top:10px;
+}
+.entry{
+    border-bottom: 1px solid #CCCCCC;
+    display: block;
+    float: left;
+    padding: 10px 0 6px;
+    width:100%;
+}
+.last{
+    border-bottom:0;
+}
+.entry > p{
+    color: #999999;
+    font-size: 12px;
+    line-height: 17px;
+    padding: 2px 0 2px 10px;
+}
+.meta{
+    padding: 0 0 0 10px;
+    width:95%;
+}
+.reply-arrow, .click-arrow{
+  background: url("../images/up-icon.png") no-repeat scroll 30px 0 transparent;  
+  padding: 9px 0 5px 10px;
+}
+.reply-link{
+  margin: 0 5px 0 0;
+}
+.meta .comments, .reply-comments{
+    background: none repeat scroll 0 center #E6E6E6;
+    margin: 0 0 2px 0;
+    padding:5px;
+}
+/*.hidden{*/
+    /*display: none;*/
+/*}*/
+.info{
+    overflow: hidden;
+    word-wrap: break-word;
+    margin:2px 0;
+    background:#e6e6e6;
+}
+
+.info p{
+    font-size:12px;
+    line-height: 18px;
+}
+.info a.profile-name {
+    color: #006699;
+    margin-right: 5px;
+}
+
+.entry .reply-box{
+    background: none repeat scroll 0 0 #EFEFEF;
+    border: 1px solid #CCCCCC;
+    padding: 3px 3px 3px 5px;
+}
+.entry .reply-box .comment-box-wrap{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px 2px 2px 2px;
+    margin: 0 0 5px;
+    padding: 4px;
+}
+.entry .reply-box .comment-box-wrap form{
+    margin:0;
+    padding:0;
+}
+.entry  .reply-box .comment-box-wrap textarea{
+    background: none repeat scroll 0 center padding-box transparent;
+    border: 0 none;
+    border-radius: 0 0 0 0;
+    box-shadow: none;
+    height: 20px;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    resize: vertical;
+    width: 100%;
+}
+.wrap .tibbr-login{
+    background: url("../images/submit-btn-bg.png") repeat scroll 0 0 transparent;
+    margin: 10% 37% 5%;
+    padding: 7px 10px;
+    width: 100px;
+    border:1px solid #ccc;
+    text-align:center;
+}
+.wrap .tibbr-login a{
+    color:#fff;
+    font-weight:bold;
+    font-size:14px;
+}
+#login-tabs .back {
+background: #4083C5;
+height: 11px;
+padding: 4px 0;
+text-align: center;
+width: 60px;
+}
+#login-tabs .back a {
+color: white;
+display: block;
+font-size: 11px;
+font-weight: bold;
+}
+.bg-tab{
+    border: 1px solid #CCC9C9 !important;
+    background: #E6E6E6 !important;
+}
+.bg-tab .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+    /*background: none repeat scroll 0 0 #FFFFFF;*/
+}
+.hidden{
+    display:none;
+}
+.reply-block{
+    clear:both;
+}
+.reply-envelope{
+    background: #e6e6e6;
+    padding: 5px 8px 0;
+}
+.reply-textarea{
+    height: 40px;
+    width: 97%;
+}
+.reply-wrap{
+   background: none repeat scroll 0 0 #E6E6E6;
+}
+.clearfix {*zoom: 1;}
+.clearfix:before,.clearfix:after {display: table;content: "";}
+.clearfix:after {clear: both;}
+#tib-post_tib-box
+{
+    background: url("../images/this-page.png") no-repeat scroll center 50% !important;
+    margin:0 ;
+}
+#tib-post_tib-box.ui-state-active
+{
+    background: url("../images/this-page-hover.png") no-repeat scroll center 50% #F1F1F1!important;
+    margin:0;
+    z-index:1;
+}
+#tib-post_question-post
+{
+    background: url("../images/this-product.png") no-repeat scroll center 50%  !important;
+    margin:0;
+    position: relative;
+    right: 7px;
+    z-index: 0;
+}
+#tib-post_question-post.ui-state-active
+{
+    background: url("../images/this-product-hover.png") no-repeat scroll center 50% #F1F1F1 !important;
+    margin:0 ;
+}
+.content{
+    color: #555555;
+    font-size: 12px;
+    line-height: 17px;
+    padding: 2px 0 2px 10px;
+}
+
+.contact-us .slide-handle .add{
+background:url('comment_close_new.png') no-repeat scroll 0 0;
+height:20px;
+width:20px;
+
+}
+.notify-text{
+    position: absolute;
+    top: 4px;
+    right: 0px;
+    font-size: 13px;
+		 font-weight: bold;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+.notify-wrap{
+    position: absolute;
+    top: 34.23%;
+    left: -38px;
+    height: 20px;
+}
+.date-post > span{
+    color: #00568D;
+    font-weight: bold;
+    margin: 0 3px 0 0;
+}
+.date-post{
+    color: #999999;
+    font-size: 12px;
+    line-height: 17px;
+    padding: 2px 0 2px 10px;
+}
+.confirm-msg{
+    color: #555555;
+    display: block;
+    font-size: 12px;
+    line-height: 17px;
+}
+.delete-link{
+    margin: 0 0 0 5px;
+}
+.confirm-wrap{
+    margin: 0 0 0 11px;
+}
+.confirm-delete{
+    padding: 3px 0 6px 8px;
+    background: #E6E6E6;
+    width: 95.33%;
+}
+.grey-btn{
+   background-image: linear-gradient(bottom, #D5D5D5 18%, #D5D5D5 59%);
+background-image: -o-linear-gradient(bottom, #D5D5D5 18%, #D5D5D5 59%);
+background-image: -moz-linear-gradient(bottom, #D5D5D5 18%, #D5D5D5 59%);
+background-image: -webkit-linear-gradient(bottom, #D5D5D5 18%, #D5D5D5 59%);
+background-image: -ms-linear-gradient(bottom, #D5D5D5 18%, #D5D5D5 59%);
+
+background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.18, #D5D5D5),
+    color-stop(0.59, #D5D5D5)
+);
+}
+.green-btn{
+    background-image: linear-gradient(bottom, #A1C403 18%, #D9F13D 59%);
+    background-image: -o-linear-gradient(bottom, #A1C403 18%, #D9F13D 59%);
+    background-image: -moz-linear-gradient(bottom, #A1C403 18%, #D9F13D 59%);
+    background-image: -webkit-linear-gradient(bottom, #A1C403 18%, #D9F13D 59%);
+    background-image: -ms-linear-gradient(bottom, #A1C403 18%, #D9F13D 59%);
+
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.18, #A1C403),
+        color-stop(0.59, #D9F13D)
+    );
+}
+.btn{
+    margin: 0 10px 0 0;
+}
+.tibbr-user-name {
+    cursor: text !important;
+}
+
+.delete-comment-link {
+    margin-left: 5px;
+}
+@media all and (min-width : 768px) and (max-width : 1024px) {
+    #main-iframe{height: 1200px !important;}
+}
+
+.hiddenli{
+    *width: 0px !important;
+    *height: 0px !important;
+    *padding: 0px !important;
+    *margin: 0px !important;
+}
+/*.ui-tabs .ui-tabs-nav li{z-index: 1;}*/
+.positionrel_loginwrap{
+   *position: relative;
+    *z-index: -1;
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .login-wrap{border:1px solid #fafafa !important;}
+    .comments{
+        -webkit-overflow-scrolling: touch !important ;
+        overflow-y: scroll !important;
+    }
+    /*.contact-us{*/
+        /*right: 0% !important;*/
+    /*}*/
+}
+
+  /*** for loading image on comment box ***/
+#loading {
+    *text-align: left !important;
+}
+#loading img {
+    position: absolute;
+    top: 45%;
+    left:45%;
+}

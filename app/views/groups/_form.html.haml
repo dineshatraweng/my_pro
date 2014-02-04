@@ -1,0 +1,21 @@
+:javascript
+  var addcat = true;
+
+= semantic_form_for(@group) do |f|
+  - if @group.errors.any?
+    %div#error_explanation
+      %h2.error_details= "#{pluralize(@group.errors.count, "error")} prohibited this group from being saved:"
+
+  = f.hidden_field :parent_id
+  %ul
+    = f.input :name
+    %li#group_parent_id_input
+      %label Parent Category
+      - if ["new","create"].include?(action_name)
+        = select('parent_group','name',@parent_groups,{:include_blank => false},{:id => 'selectpg'})
+      -else
+        %label.pg-label= @group.is_root? ? "None" : @group.parent.name
+
+  #actions
+    = f.submit action_name == "new" ? "Create" : "Save" ,{:class => "create-category"}
+    = link_to 'Back',  get_redirect_url, :class => 'pngFix'

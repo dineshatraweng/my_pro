@@ -1,0 +1,7 @@
+%h1 Editing comment
+
+= render 'form'
+
+= link_to 'Show', product_comment_path(@comment.product,@comment)
+|
+= link_to 'Back', product_path(@comment.product)

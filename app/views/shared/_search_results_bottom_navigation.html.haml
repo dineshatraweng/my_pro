@@ -1,0 +1,18 @@
+#search-footer
+  %ul
+    %li.search-footer-description
+      ="About #{@search_result[:total_results]} results (#{@search_result[:search_time]} seconds)"
+    %li#pagination-wrapper
+      %ul#pagination
+        - if search_result.has_key?(:top_nav)
+          - prev = search_result[:top_nav].has_key?(:previous)
+          - next_result = search_result[:top_nav].has_key?(:next)
+          %li{:class => "#{prev ?  'previous-on' : 'previous-off' }",:style => 'float:left;'}
+            = prev ? (link_to "Prev",search_result[:top_nav][:previous]) : "Prev"
+          - start = (search_result[:all_params].has_key?(:start)) ? search_result[:all_params][:start] : 0
+          - pagination = pagination_links(search_result[:all_params][:query], start.to_i,search_result[:total_results])
+          - pagination.each do |link|
+            %li{:class => "#{link[:disabled] ? "active" : ""}", :style => 'float:left;'}
+              = link[:disabled] ? (link_to "#{link[:index]}","javascript:void(0)") : (link_to "#{link[:index]}",link[:link])
+          %li{:class => "#{next_result ? 'next-off' : 'next-on'  }",:style => 'float:left;'}
+            = next_result ? (link_to "Next ", search_result[:top_nav][:next]) : "Next"

@@ -1,0 +1,11 @@
+%div#error_explanation
+  - if @user_session.errors.any?
+    %h2.error_details= "Username or Password is invalid."
+
+= semantic_form_for(@user_session) do |f|
+  %ul
+    = f.input :username, :input_html => {:class => "set-focus-here"}, :required => false
+    = f.input :password, :required => false
+
+  #actions
+    = f.submit "Login"

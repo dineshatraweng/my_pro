@@ -1,0 +1,8 @@
+%b
+  = link_to group.name,group_path(group)
+%div
+  - unless group.products.blank?
+    %ul.products
+      - group.products.each do |prod|
+        %li
+          = link_to prod.name, prod

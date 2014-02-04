@@ -1,0 +1,27 @@
+div.tagsinput { border:1px solid #CCC; background: #FFF; padding:8px; width:300px; height:100px; overflow-y: auto;overflow-x: hidden;/*padding-left:25px\0/;padding-right: 3px\0/;*padding-left:25px !important;*padding-right: 5px;*/ *overflow-y: hidden;}
+div.tagsinput span.tag { -moz-border-radius:2px; -webkit-border-radius:2px; display: block; padding: 5px; text-decoration:none; background: none repeat scroll 0 0 #e6e6e6; color: #777777; margin-right: 5px; margin-bottom:5px;font-family: helvetica;  font-size:13px;position: relative;}
+div.tagsinput span.tag a { font-weight: bold; color: #000; text-decoration:none; font-size: 11px; float: right;position: absolute;top: 5px;right: 5px; }
+div.tagsinput input { width:80px; margin:0px; font-family: helvetica; font-size: 13px; border:1px solid transparent; padding:5px; background: transparent; color: #000; outline:0px;  margin-right:5px; margin-bottom:5px; }
+div.tagsinput div { display:block; float: left;overflow: hidden; }
+.tags_clear { clear: both; width: 100%; height: 0px; }
+.not_valid {background: #FBD8DB !important; color: #90111A !important;}
+/*div.tagsinput{width: 550px\0/ !important;}*/
+/*div.tagsinput{*width: 550px !important;}*/
+div.tagsinput span.tag{margin-left: 0px\0/;}
+div.tagsinput span.tag{*margin-left: 0px;/*overflow:hidden;*/}
+div.tagsinput input {
+*padding-left:3px !important;
+*width:545px !important;
+width:545px\0/ !important;
+}
+/*div.tagsinput span.tag {*overflow:hidden;}*/
+div.tagsinput div#tags_1_addTag{
+  *float:none;
+  *overflow:visible;
+  float:none\0/;
+  overflow:visible\0/;
+} /*for cursor on next line when tag is added in IE7 */
+div.tagsinput div { 
+*float:none;
+*overflow:visible;
+}

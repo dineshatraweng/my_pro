@@ -1,0 +1,13 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = link_to @document.name,@document.link
+
+%p
+  %b Description:
+  = @document.description
+
+= link_to 'Edit', edit_product_document_path(@document.product,@document)
+|
+= link_to 'Back', product_path(@document.product)

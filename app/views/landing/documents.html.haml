@@ -1,0 +1,12 @@
+%head
+  %meta{:name=>"robots", :content=>"noindex, follow"}
+%body
+  %ul
+    - @products.each do |product|
+      %li
+        = product.name
+        %ul
+          - documents = product.documents
+          - documents.each do |document|
+            -#%li= link_to document.name, url_for(document_link_crawl(product,document.link))
+            %li= link_to document.name, url_for(get_document_link_crawl(product, document))

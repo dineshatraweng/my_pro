@@ -1,0 +1,47 @@
+Index: custom_tasks.rake
+===================================================================
+--- custom_tasks.rake	(revision 2454)
++++ custom_tasks.rake	(working copy)
+@@ -42,7 +42,7 @@
+     else
+       puts "no product present to update the pdf count"
+     end
+-  end
++  end 
+ end
+ 
+ task :set_product_slug => :environment do
+@@ -323,4 +323,31 @@
+     end
+   end
+   puts "#{count} Products published_date Updated"
+-end
+\ No newline at end of file
++end
++
++task :remove_slash_from_folder_path => :environment do
++  puts "Process Started.................."
++  products = Product.where('folder_path like ?', "/%").each do |p|
++    if p.save
++      puts "Product(id=#{p.id}) folder_path updated successfully"
++    else
++      puts "Product(id=#{p.id}) folder_path not updated "
++      puts "Error: #{p.errors}"
++    end
++  end
++  puts "Products folder_path Updated"
++end
++
++task :remove_slash_from_document_link => :environment do
++  puts "Process Started.................."
++  documents = Document.where('link like ?', "/%").each do |d|
++    if d.save
++      puts "document(id=#{d.id}) document_link updated successfully"
++    else
++      puts "document(id=#{d.id}) document_link not updated "
++      puts "Error: #{d.errors}"
++    end
++  end
++  puts "Documents document_link Updated"
++end
++

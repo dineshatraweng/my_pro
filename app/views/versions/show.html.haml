@@ -1,0 +1,22 @@
+%p#notice
+  = notice
+
+%h2
+  = "#{@version.product.name}: #{@version.version_number}"
+
+%p
+  %b Name:
+  = @version.name
+
+%p
+  %b Description:
+  = @version.description
+
+%p
+  %b Folder path:
+  = @version.folder_path
+
+
+= link_to 'Edit', edit_product_version_path(@version.product,@version)
+|
+= link_to 'Back', product_versions_path(@version.product)

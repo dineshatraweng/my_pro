@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @doc_ftp.name %>
+</p>
+
+<p>
+  <b>Path:</b>
+  <%= @doc_ftp.path %>
+</p>
+
+<p>
+  <b>Doctype:</b>
+  <%= @doc_ftp.doctype %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @doc_ftp.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_doc_ftp_path(@doc_ftp) %> |
+<%= link_to 'Back', doc_ftps_path %>

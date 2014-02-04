@@ -1,0 +1,214 @@
+!!!strip
+%html
+  %head
+    %title TIBCO Product Documentation
+    %link{:href => '/images/favicon.ico' ,:rel => 'shortcut icon'}
+    = stylesheet_link_tag 'jquery-tree','jquery.selectbox','960','reset','style','token-input-fb', 'demos', 'jquery.ui.autocomplete','ellipsis', 'jquery-ui','application','jquery.tagsinput','jquery.qtip-v2.2.0'
+    = javascript_include_tag 'jquery-1.7.1.min','jquery-migrate-v1.2.1','jquery.qtip-v2.2.0','jquery-ui-1.8.12.custom.min','jquery.selectbox-0.6.1','jquery.treeview','jquery.tokeninput','jquery.ba-url','jquery.raty.min','jquery.tools.min','jquery.tablednd.0.7.min','ellipsis','script-drag','jquery.tagsinput','jquery-ui-1.9.2.custom.tooltip.min'
+    =javascript_include_tag 'ajax_search','application'
+    = csrf_meta_tag
+
+    :javascript
+        $(document).ready(function(){
+         if ( $.browser.msie) {
+          var jWindow = $(window);
+          var a = jWindow.height();
+          var b = jWindow.width();
+          if(a < 720 && b < 720){
+             $("#content-wrapper").wrap("<div class='windowwrap'></div>");
+             $('.windowwrap').css('height',a);
+             $('.windowwrap').css('width',b);
+             $('.windowwrap').css('overflow','auto');
+              $(window).resize(function(){
+                var jWindow = $(window);
+                var a = jWindow.height();
+                var b = jWindow.width();
+                $('.windowwrap').css('height',a);
+                $('.windowwrap').css('width',b);
+                $('.windowwrap').css('overflow','auto');
+            })
+            }
+          }
+          else{
+        var jWindow = $(window);
+        var a = jWindow.height();
+        var b = jWindow.width();
+        if(!$(window).attr("scrollbars").visible){
+        $("#content-wrapper").wrap("<div class='windowwrap'></div>");
+        $('.windowwrap').css('height',a);
+        $('.windowwrap').css('width',b);
+        $('.windowwrap').css('overflow','auto');
+           if ($.browser.webkit) {
+               $('.windowwrap').css('height','100%');
+               $('.windowwrap').css('width','100%');
+           } /* code for chrome browsers*/
+         }
+        $(window).resize(function(){
+        var jWindow = $(window);
+        var a = jWindow.height();
+        var b = jWindow.width();
+        $('.windowwrap').css('height',a);
+        $('.windowwrap').css('width',b);
+        $('.windowwrap').css('overflow','auto');
+        })
+        }
+        });
+
+
+    /[if IE 7]
+      = stylesheet_link_tag "ie"
+      = javascript_include_tag 'jquery.ba-hashchange'
+
+    /[if lte IE 6]
+      = stylesheet_link_tag "ie6"
+      = javascript_include_tag 'ie-pngFix/DD_belatedPNG_0.0.8a','ie-pngFix/imgfix', 'jquery.ba-hashchange'
+
+
+  %body
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '#{app_config(:google_analytics,:account)}']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    %div{:class => apply_entity_class_for_actions, :id => 'content-wrapper' }
+      #header
+        %div{ :id => 'header-content', :class => 'clearfix'}
+          %h1= link_to "Product Documentation", root_url(:ref_logo => "home"), :class => 'logo pngFix'
+          #login
+            %ul{:id => "register"}
+              -if logged_in?
+                - if current_user_is_employee?
+                  - cookies["tibco-docs-login"] = {:value => true}
+                  - if session[:employee_login]['name'].blank?
+                    %li
+                      %span{:class => "welcome_text"} Welcome,
+                      %span
+                        - if session[:login_as].blank?
+                          = session[:employee_login]['email'].to_s + " (Guest)"
+                        - else
+                          = session[:employee_login]['email'].to_s + " (" +  session[:login_as][0..-2].to_s + ")"
+                      %span{:class => "welcome_bar"}
+                      |
+                  - else
+                    %li
+                      %span{:class => "welcome_text"} Welcome,
+                      %span
+                        - if session[:login_as].blank?
+                          = session[:employee_login]['name'].to_s + " (Guest)"
+                        - else
+                          = session[:employee_login]['name'].to_s + " (" +  session[:login_as][0..-2].to_s + ")"
+                      %span{:class => "welcome_bar"}
+                        |
+
+                - else
+                  - cookies["tibco-docs-login"] = {:value => true,:expires => 30.minutes.from_now}
+                  %li
+                    %span.welcome_text
+                      = "Welcome,"
+                      %span.Admin_username
+                        = current_user.firstname + " " + current_user.lastname  + " (admin)"
+                        %span{:class => "welcome_bar_admin"}
+                          |
+                %li
+                  = link_to "Sign Out", user_logout_path
+              -else
+                %li
+                  = link_to "Sign In", new_ldap_login_path, :class => 'sign-in'
+
+
+          -##tibcommunity
+          -#  %span
+          -#    Want to discuss products?
+          -#  = link_to "TIBCOmmunity",'https://www.tibcommunity.com/index.jspa', :class => 'logout', :target => '_blank'
+      #nav-wrapper.pngFix
+        %ul
+          %li.pngFix{:class => "#{'active' if (controller_name == 'products' && ['index', 'show','a_z_products'].include?(action_name))}"}
+            = link_to 'Browse',get_redirect_url, :class => 'browse-tab-link', :id => 'auth_tc_login'
+          %li.pngFix{:class => "#{'active' if (controller_name == 'products' && action_name == 'search_tab')}"}
+            = link_to 'Search',search_tab_products_path, :class => 'search-tab-link'
+          -#%li.employee-login-bar
+          -#  - if !logged_in?
+          -#    - unless (["new","login"].include?(action_name) and ["user_sessions","ldap_logins"].include?(controller_name))
+          -#      = link_to "Login", new_ldap_login_path, :class => 'logout' unless session.has_key?(:employee_login)
+      - if logged_in? && current_user_is_admin?
+        #buttons
+          #button-link
+            - if logged_in?
+              - unless current_user_is_employee?
+                -#%div.reportwrap
+                -#  %div.report-label
+                -#    Reports
+                  -#%p
+                  -#  = link_to "Detailed Report", "#{get_csv_report_product_path('detailed')}.csv", :class => 'form-link-without-img pngFix'
+                  -#  = link_to "Brief Report", "#{get_csv_report_product_path('brief')}.csv", :class => 'form-link-without-img pngFix'
+                  -#  = link_to "Latest Detailed Report" , "#{get_latest_detail_release_report_products_path}.csv" , :class => 'form-link-without-img pngFix'
+                  -#  = link_to "Latest Brief Report" , "#{get_latest_brief_release_report_products_path}.csv" , :class => 'form-link-without-img pngFix'
+
+                %div.button-row
+                  = link_to 'Add Product Version', new_product_path, :class => 'form-link pngFix'
+                  = link_to 'Add Product', new_parent_products_path, :class => 'form-link pngFix'
+                  = link_to 'Add Category', new_group_path, :class => 'form-link pngFix'
+                  = link_to 'Unzip Files', doc_ftps_path, :class => 'form-link-without-img pngFix'
+                  = link_to 'How To', doc_admin_instructions_path, :class => 'form-link-without-img pngFix' , :target => "_blank"
+
+
+
+                  %div.reports-wrapper
+                    = link_to "#", :class => 'report-button' do
+                      Reports
+
+                    %div.reports-wrap
+                      %ul#report-items
+                        %li
+                          = link_to "Brief Report", "#{get_csv_report_product_path('brief')}.csv", :class => ''
+                        %li
+                          = link_to "Latest Brief Report", "#{get_latest_brief_release_report_products_path}.csv", :class => ''
+                        %li
+                          = link_to "Detailed Report", "#{get_csv_report_product_path('detailed')}.csv", :class => ''
+                        %li
+                          = link_to "Latest Detailed Report", "#{get_latest_detail_release_report_products_path}.csv", :class => ''
+                        %li
+                          = link_to "Product Breadcrumb Report", "#{get_breadcum_report_products_path}.csv", :class => ''
+                        %li
+                          = link_to "Out Of Cycle Update Report" ,"#{get_ooc_report_products_path}.csv"
+                        %li
+                          = link_to "Hold Untill GA Report" ,"#{get_ga_report_products_path}.csv"
+                        %li.border-bottom-none
+                          = link_to "All Reports" ,"#{get_all_reports_products_path}.zip", :class => 'download-all-report'
+
+      %div.pngFix.height100{:id => (["user_sessions","ldap_logins"].include?(controller_name) ? "content-login" : 'content')}
+        = yield
+
+      #footer
+        - if params[:query]
+          :javascript
+            _gaq.push(["_addOrganic","na-h-mktgsa.tibco.com", "query"]);
+            var set_search = "#{params[:query]}"
+
+        - if !params[:filters].blank?
+          :javascript
+            var set_filters = "#{params[:filters].split('|')[0]}";
+
+        #footer-logo-wrap
+          #footer-links
+            %p
+              Copyright &copy; 2011-2014
+              = link_to "TIBCO Software Inc.","http://www.tibco.com",:target => "_blank"
+              |
+              = link_to "Privacy Policy", "http://www.tibco.com/company/privacy.jsp", :target => '_blank'
+              |
+              = link_to "Terms of Use", "http://www.tibco.com/company/termsofuse.jsp", :target => '_blank'
+              |
+              = link_to "Contact the Technical Communication Team", "mailto:tibcommunity-docs@tibco.com"
+              |
+              = link_to 'Contact Sales', 'http://forms2.tibco.com/tibco-docsite-contact', :target => '_blank'
+
+-if controller_name == "products" && action_name == 'show'
+  -if defined?(@product) && @product.hold_until_ga
+    %div.draft-content
+      draft

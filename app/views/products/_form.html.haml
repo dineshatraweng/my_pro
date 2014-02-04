@@ -1,0 +1,54 @@
+:javascript
+  path_for="products"
+
+= semantic_form_for(@product) do |f|
+  - if @product.errors.any?
+    #error_explanation
+      %h2.error_details= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
+      -#%ul.error-list
+      -#  - @product.errors.full_messages.each do |msg|
+      -#    %li= msg
+
+  %ul
+    = f.input :name
+    %p.tags_class
+      ( Landing page URL derived from this field )
+    = f.input :description
+    = f.input :folder_path, :as => :string, :input_html => {:class => "folder-path-field"}
+
+    - if @new_request
+      = f.input :hold_until_ga , :label => "Hold Until GA" , :as => :boolean , :input_html => { :checked => 'checked' }
+    - else
+      = f.input :hold_until_ga , :label => "Hold Until GA" , :as => :boolean
+
+    - unless @product.is_child_product?
+      %li
+        %fieldset
+          %legend
+            %label.acc-lev-label OEM
+          %ol
+            = f.input :oem, as: :radio , :label => false
+      %li
+        %fieldset
+          %legend
+            %label.acc-lev-label Access Level
+          %ol
+            = f.input :access_level, :as => :radio, :label => false, :collection => @product.product_access_level_collection
+            -#= f.input :public, :input_html => {:class => "doc-access-level"}
+            -#= f.input :visible, :input_html => {:class => "doc-access-level"}
+
+      = f.input :groups, :as => :check_boxes, :collection => Group.groups_breadcrumb, :label => "Categories", :required => true
+
+  -#%ul#myTags.tagit
+  -#  - unless @product.tags.blank?
+  -#    -@product.tags.split(',').each do |tag|
+  -#      %li
+  -#        = tag
+
+  #actions
+    = f.submit action_name == "new"? 'Create' : "Save"
+    = link_to 'Back', get_redirect_url, :class => 'pngFix'
+
+
+
+

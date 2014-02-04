@@ -1,0 +1,101 @@
+<div class="contact-form">
+  <div class="wrap">
+    <div id="tabs">
+      <div id="login-tabs">
+        <ul>
+          <li id="bg-tab" class="bg-tab0"><a href="#partners-and-customers-login" id="customer-partner-click">Customers and Partners</a></li>
+          <li id="bg-tab" class="bg-tab1"><a href="#employee-login" id="employee-click">Employees</a></li>
+        </ul>
+        <div class="login-wrap">
+          <%- unless @success[:error].blank? %>
+              <div class="error_explanation">
+                <h2 class="error_details"><%=  @success[:error] %></h2>
+              </div>
+          <% end  %>
+          <div id="partners-and-customers-login">
+            <%- semantic_form_for :ldap_credentials, :url => login_tibbr_integration_index_path do |f|  %>
+                <ul>
+                <% unless params['ldap_credentials'].nil? %>
+                      <%= f.input :active_tab, :as => :hidden, :input_html => { :value => "partners-and-customers-login"} %>
+                    <%= f.input :username, :input_html=>{:class => 'form-text set-focus-here',:value => params['ldap_credentials']['username'], :id => 'name'}, :required => false %>
+                    <%= f.input :password, :input_html=>{:class => 'form-text', :id => 'password'}, :required => false %>
+
+                <% else %>
+                      <%= f.input :active_tab, :as => :hidden, :input_html => {:value => "partners-and-customers-login"} %>
+                    <%= f.input :username, :input_html=>{:class => 'form-text set-focus-here', :id => 'name'}, :required => false %>
+                    <%= f.input :password, :input_html=>{:class => 'form-text', :id => 'password'}, :required => false %>
+
+                <% end %>
+                </ul>
+                <fieldset class="form-actions">
+                  <%= f.submit 'Login'  %>
+                  <a href="https://tibbr.tibcommunity.com/tibbr/web/signup" target="_blank">Don't Have an Account</a>
+                  <a href="https://tibbr.tibcommunity.com/tibbr/web/login#" target="_blank">Forgot Password</a>
+                </fieldset>
+            <% end %>
+          </div>
+          <div id="employee-login">
+            <%- semantic_form_for :ldap_credentials, :url => login_tibbr_integration_index_path do |f|  %>
+                <ul>
+                <% unless params['ldap_credentials'].nil? %>
+                    <%= f.input :active_tab, :as => :hidden, :input_html => {:value => "employee-login"} %>
+                    <%= f.input :username, :input_html=>{:class => 'form-text set-focus-here',:value => params['ldap_credentials']['username'] , :id => 'name'},:label => "Email (john@tibco.com)", :required => false %>
+                    <%= f.input :password, :input_html=>{:class => 'form-text', :id => 'password'}, :label => "Active Directory Password", :required => false %>
+
+                <% else %>
+                    <%= f.input :active_tab, :as => :hidden, :input_html => {:value => "employee-login"} %>
+                    <%= f.input :username, :input_html=>{:class => 'form-text set-focus-here', :id => 'name'},:label => "Email (john@tibco.com)", :required => false %>
+                    <%= f.input :password, :input_html=>{:class => 'form-text', :id => 'password'}, :label => "Active Directory Password", :required => false %>
+                <% end %>
+                  </ul>
+                <fieldset class="form-actions">
+                  <%= f.submit 'Login'  %>
+                  <!--<a href="http://www.tibcommunity.com/login!input.jspa?registerOnly=true" target="_blank">Don't Have an Account</a>-->
+                  <!--<a href="https://www.tibcommunity.com/emailPasswordToken!input.jspa" target="_blank">Forgot Password</a>-->
+                </fieldset>
+            <% end %>
+          </div>
+        </div>
+        <div class="back">
+          <a href="<%= get_previous_url %>">Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $("#name").focus()
+    $("#employee-click").click(
+            function()
+            {
+                setTimeout(function() {
+                    $("#employee-login").find('#name').focus();
+                }, 0);
+            });
+    $("#customer-partner-click").click(
+            function()
+            {
+                setTimeout(function() {
+                    $("#partners-and-customers-login").find('#name').focus();
+                }, 0);
+            });
+
+</script>
+
+
+
+
+<script type="text/javascript">
+    active_tab = "<%= @success[:active_tab] %>"
+    $(document).ready(function(){
+        if (active_tab  != "partners-and-customers-login")
+        {
+            setTimeout(function() {
+                $("#employee-login").find('#name').focus();
+            },0);
+            $("#employee-click").click();
+        }
+        $(".login-wrap").addClass('positionrel_loginwrap');
+    });
+</script>

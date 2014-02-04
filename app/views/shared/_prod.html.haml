@@ -1,0 +1,33 @@
+- if current_user_is_admin?
+  - products = group.products.where(:ancestry => nil).order('slug')
+- else
+  - products = group.products.where('ancestry IS ?',nil).order('slug')
+- unless products.blank?
+  - products.each do |product|
+    -if !current_user_is_admin?
+      - if product.is_employee_level?
+        - if product.is_parent_product?
+          - if product.children.count != 0 && product.check_published
+            %ul
+              %li
+                - protected = product.is_public_level? ? "folder" : "requires-login"
+                %span.pngFix{:class => "expandable-level-#{indentation} #{protected}"}
+                  -#= link_to product.name, product_path(product) , :class => 'product_name', :id => "p_#{product.id}"
+                  = link_to product.name_filter, product_path(product), :class=>"product_name" , :id => "p_#{product.id}"
+        -else
+          - if product.published?
+            %ul
+              %li
+                - protected = product.is_public_level? ? "folder" : "requires-login"
+                %span.pngFix{:class => "expandable-level-#{indentation} #{protected}"}
+                  -#= link_to product.name, product_path(product) , :class => 'product_name', :id => "p_#{product.id}"
+                  = link_to  product.name_filter, product_path(product), :class=>"product_name" , :id => "p_#{product.id}"
+
+    -else
+      %ul
+        %li
+          -protected = product.is_public_level? ? "folder" : product.is_employee_level? ? "requires-login" : "admin-only"
+          %span.pngFix{:class => "expandable-level-#{indentation} #{protected}"}
+            -#= link_to product.name, product_path(product) , :class => 'product_name', :id => "p_#{product.id}"
+            = link_to product.name_filter, product_path(product), :class=>"product_name" , :id => "p_#{product.id}"
+

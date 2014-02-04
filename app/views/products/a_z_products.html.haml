@@ -1,0 +1,36 @@
+# encoding: utf-8
+%div{:id => 'browse-tab', :class => 'padd-top20'}
+  #side-bar
+    #search-box.ui-widget
+      = render :partial => 'find_products'
+
+    #tree-control
+      = link_to tag(:img,{:src => "/images/collapse.png", :class =>'pngFix'}),"#", :class => "collapse-all"
+      = link_to tag(:img,{:src => "/images/expand.png", :class =>'pngFix'}),"#", :class => "expand-all"
+
+    %ul#browse.filetree.treeview-famfamfam
+      = render :partial => 'product_list'
+
+  #main-content
+    #az-wrap
+      #az-title-wrap
+        %p.az-title Products A-Z
+        %p.asterisk-notice
+          %span.login-required *
+          #{"- Requires login"}
+      %ul.products-for-group
+        - @products.each do |prod|
+          -if current_user_is_admin?
+            %li.root-product-list{:class => set_access_icon(prod)}
+              = link_to "#{prod.name_filter}#{content_tag(:span, '*', :class => 'login-required') if !prod.is_public_level?}".html_safe,prod, :id =>"prod-atoz_#{prod.id}"
+
+          -else
+            - if prod.is_parent_product?
+              - if prod.children.count != 0
+                %li.root-product-list
+                  = link_to "#{prod.name_filter}#{content_tag(:span, '*', :class => 'login-required') if !prod.is_public_level?}".html_safe,prod, :id =>"prod-atoz_#{prod.id}"
+
+
+            - else
+              %li.root-product-list
+                = link_to "#{prod.name_filter}#{content_tag(:span, '*', :class => 'login-required') if !prod.is_public_level?}".html_safe,prod, :id =>"prod-atoz_#{prod.id}"

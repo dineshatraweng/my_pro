@@ -1,0 +1,5 @@
+%div#top_navigation
+  = link_to "< Previous","#{root_url.chop}#{search_result[:top_nav][:previous]}", :class => 'previous-page' if search_result[:top_nav].has_key?(:previous)
+  = link_to "Next >","#{root_url.chop}#{search_result[:top_nav][:next]}", :class => 'next-page' if search_result[:top_nav].has_key?(:next)
+  %br
+  = search_result[:filtered] ? (link_to "Show All Results",current_search_url(search_result[:all_params])) : (link_to "Omit Similar Results",current_search_url(search_result[:all_params]))

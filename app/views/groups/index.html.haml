@@ -1,0 +1,6 @@
+%h1 Groups List
+
+= nested_groups @groups.arrange(:order => :created_at)
+
+%br
+= link_to 'Add Parent Group', new_group_path

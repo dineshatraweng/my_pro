@@ -1,0 +1,85 @@
+:javascript
+  path_for="products"
+
+    //$(document).ready(function()
+    //{
+          $(function() {
+             $('#tags_1').tagsInput({width:'560px'});
+             });
+    //});
+
+
+%ul#unversioned-products
+  - unless  @unverisoned_products.blank?
+    - @unverisoned_products.each do |product|
+      %li.edittable.ready
+        - ver = product.version_no || get_extracted_version(product)
+        - default = product.default || false
+        = link_to product.name, product_path(product) , :class => 'product_name', :id => "#{product.id}", :name => "{\"version\" : \"#{ver}\", \"default\" : \"#{default}\"}"
+  - unless  @verisoned_products.blank?
+    - @verisoned_products.each do |product|
+      %li.edittable.ready
+        - ver = product.version_no || get_extracted_version(product)
+        - default = product.default || false
+        = link_to product.name, product_path(product), :id => "#{product.id}", :name => "{\"version\" : \"#{ver}\", \"default\" : \"#{default}\"}"
+
+
+= semantic_form_for(@product, :url=>{:controller=> "products", :action => "#{@product.new_record? ? "create_parent" : "update_parent"}"}) do |f|
+  - if @product.errors.any?
+    #error_explanation
+      %h2.error_details= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
+  %ul
+    = f.input :name,:id => "parent-product-name"
+    %li
+      %fieldset
+        %legend
+          %label.acc-lev-label OEM
+        %ol
+          = f.input :oem, as: :radio , :label => false
+    %li
+      %fieldset
+        %legend
+          %label.acc-lev-label Access Level
+        %ol
+          = f.input :access_level, :as => :radio, :label => false, :collection => @product.product_access_level_collection
+          -#= f.input :public, :input_html => {:class => "doc-access-level"}
+          -#= f.input :visible, :input_html => {:class => "doc-access-level"}
+    = f.input :groups, :as => :check_boxes, :collection => Group.groups_breadcrumb, :label => "Categories", :required => true
+    %li#add_version_input.string.required
+      %label
+        Add version
+        %abbr{:title => "required"} *
+      %input#version.ui-autocomplete-input{:type => "text"}
+      -#%input.form-field{:type => "button", :value => "Add", :id => "version-add-button"}
+    %li
+      %table#table1.form-table
+        %tbody
+          %tr.tr-color.nodrop.nodrag
+            %th.entry-no
+            %th.header-name Name
+            %th.header-version Version Number
+            %th.header-action Action
+        - unless @versions.blank?
+          - @versions.each do |version|
+            %tr.row-color
+              %td{:style => "display: none;"}
+                %input{:type => "text", :style => "display: none;", :name => "product[version][][id]", :value => "#{version[:id]}" }
+              %td.dragHandle
+              %td{ :style => "display:none;" }
+                %input{ :type => "text", :name => "product[version][][name]" , :value =>"#{version[:name]}"}
+              %td
+                = "#{version[:name]}".gsub("®".force_encoding('utf-8'),"<sup>®</sup>").gsub('&reg;',"<sup>®</sup>").gsub("&REG;","<sup>®</sup>").gsub('&reg',"&amp;reg").gsub('&REG',"&amp;REG").html_safe
+              %td.version_field
+                %input{ :type => "text", :name => "product[version][][version_no]", :value => "#{version[:version_no]}" }
+              %td
+                %center
+                  %input.cancel-button{ :type => "button", :value => "Remove"}
+    -unless @product.errors['base'].blank?
+      %p.inline-errors
+        = 'Product must have a version'
+    = f.input :tags , :input_html => { :id => "tags_1"}
+    %p.tags_class
+      ( Tags are not case sensitive )
+  #actions
+    = f.submit action_name == "new"? 'Create' : "Save"
+    = link_to 'Back', get_redirect_url, :class => 'pngFix'

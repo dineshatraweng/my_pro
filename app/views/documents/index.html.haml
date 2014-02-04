@@ -1,0 +1,21 @@
+%h1 Listing documents
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th
+    %th
+    %th
+
+  - @documents.each do |document|
+    %tr
+      %td= link_to document.name, document.link
+      %td= document.description
+      %td= link_to 'Show', product_document_path(document.product,document)
+      %td= link_to 'Edit', edit_product_document_path(document.product,document)
+      %td= link_to 'Destroy', product_document_path(document.product,document), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Document', new_product_document_path(@product)

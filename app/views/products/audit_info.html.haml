@@ -1,0 +1,22 @@
+- unless @audits.blank?
+  %table
+    %tr
+      %td
+        Type
+      %td
+        Name
+      %td
+        FTP Path
+      %td
+        Visibility
+      %td
+        Admin User
+      %td
+        Modified At
+    - @audits.each_with_index do |audit|
+      - if show_audit_entry?(audit)
+        %tr
+          - audits = get_formatted_audit(audit)
+          - audits.each_pair do |key, value|
+            %td
+              = key == :user ? get_admin_username(@admin_key_map,value): value

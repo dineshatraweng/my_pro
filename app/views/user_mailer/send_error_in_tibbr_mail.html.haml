@@ -1,0 +1,19 @@
+%p
+  Hi Team
+%p
+  An error has occurred while logging into the site. Details of which are as follows:
+%p
+  Details :
+%p
+  = @details.blank? ?  " -- "  : @details.inspect
+%p
+  Error Details :
+%p
+  = @error_details.blank? ?  " -- "  : @error_details.inspect
+
+%p
+  Tibbr_Error Details :
+  = @tibber_errors.blank? ?  " -- "  : @tibber_errors.inspect
+
+
+

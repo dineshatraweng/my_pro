@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  path: MyText
+  doctype: MyString
+  unzipped: false
+
+two:
+  name: MyString
+  path: MyText
+  doctype: MyString
+  unzipped: false

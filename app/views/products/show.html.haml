@@ -1,0 +1,152 @@
+- if current_user.is_a?(Admin)
+  = javascript_include_tag 'document-sortable'
+  :javascript
+    $(document).ready(function(){
+     sortDocuments();
+    });
+:javascript
+    var category_id = #{get_category_id(@product)};
+    var product_id = #{get_product_id(@product)};
+    $(document).ready(function(){
+      if (typeof(_gaq) != 'undefined')
+      {
+        _gaq.push(['_trackEvent', '#{@product.visibility}', 'visit', '#{@product.name}']);
+      }
+    });
+%div{:id => 'browse-tab', :class => 'padd-top20'}
+  #side-bar
+    #search-box.ui-widget
+      = render :partial => 'find_products'
+
+    #tree-control
+      = link_to tag(:img,{:src => "/images/collapse.png", :class =>'pngFix'}),"#", :class => "collapse-all"
+      = link_to tag(:img,{:src => "/images/expand.png", :class =>'pngFix'}),"#", :class => "expand-all"
+
+    %ul#browse.filetree.treeview-famfamfam
+      = render :partial => 'product_list'
+
+  #main-content
+    -unless @product.is_parent_product? && current_user_is_admin?
+      -unless @versions.blank?
+        #tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all.version-tab
+          %ul#tab-label.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all
+            %li.version
+              Versions:
+            - @versions.each do |version|
+              - if version[:id] == @product.id
+                %li.ui-state-default.ui-corner-top.ui-tabs-selected.ui-state-active
+                  %a{:href=>"javascript:void(0)"}
+                    = "#{version[:version].join('.')}"
+              - else
+                %li.ui-state-default.ui-corner-top
+                  %a{:href=>"#{version[:url]}"}
+                    = "#{version[:version].join('.')}"
+    #tabs-1.ui-tabs-panel.ui-widget-content.ui-corner-bottom
+      #white-wrapper
+        #breadcrumb #{@product.parent_groups(params[:category]).gsub("®".force_encoding('utf-8'),"<sup>®</sup>").gsub('&reg;',"<sup>®</sup>").gsub("&REG;","<sup>®</sup>").gsub('&reg',"&amp;reg").gsub('&REG',"&amp;REG").html_safe}
+        #heading-wrap
+          %img.folder-big.pngFix{:src => "/images/folder-big.png", :alt => "folder-big.png"}
+          %h2.heading #{@product.name.gsub("®".force_encoding('utf-8'),"<sup>®</sup>").gsub('&reg;',"<sup>®</sup>").gsub("&REG;","<sup>®</sup>").gsub('&reg',"&amp;reg").gsub('&REG',"&amp;REG").html_safe}
+          - if logged_in?
+            - unless current_user_is_employee?
+              .heading-button-wrap
+                -if current_user_is_admin?
+                  %span#color-code
+                    = "OEM | " if @product.oem
+                    = set_access_flag(@product)
+                = link_to tag("img", { :src => "../images/edit.png", :alt => "edit.png"}),edit_product_path(@product), :class => 'heading-button-link',:title => "Edit #{@product.filtered_name.squeeze(" ")}"
+                = link_to tag("img", { :src => "../images/delete_btn.png", :alt => "delete.png" }),@product, :onClick => delete_function("Are you sure you want to delete the product?"), :method => :delete,:class => 'heading-button-link',:title => "Delete #{@product.filtered_name.squeeze(" ")}"
+        -unless @product.is_parent_product? && current_user_is_admin?
+          #rating
+            Rate the documentation:
+            - if logged_in? && current_user_is_admin?
+              %script{:type => "text/javascript"}
+                document.getElementById('rating').className='margtop'
+            #rating-star
+          %a{:id => "get-feedback"} Send feedback on documentation
+          %div.description
+            - unless @product.description.blank?
+              = get_formatted_description(@product).gsub("®".force_encoding('utf-8'),"<sup>®</sup>").gsub('&reg;',"<sup>®</sup>").gsub("&REG;","<sup>®</sup>").gsub('&reg',"&amp;reg").gsub('&REG',"&amp;REG").html_safe
+            - if @product.hold_until_ga
+              %div.ga_message
+                %p
+                  %b
+                    = "This product is a draft and yet to be released for public use. DO NOT share links for this product. "
+
+          - if @product.documents.blank?
+            %p.notif= "No Documents Added."
+          - else
+
+            %div.document-files-container
+              %ul.product-docs.listing
+                - documents = @product.documents.order('document_order')
+                - unless documents.nil?
+                  - documents.each do |document|
+                    - if show_document_if_link_exists?(document)
+                      %li.ui-state-default{:id => "document_#{document.id}",:style => "#{'background: none repeat scroll 0 0 #FFE0E0 ;' if current_user_is_admin? && !link_is_broken?(document) }"}
+                        - dt = get_extension_from_url(document.link)
+                        - draggable = current_user.is_a?(Admin) ? tag(:img,{:class => "grippy",:src => "/images/grippy.png"}) : ""  if documents.size > 1;
+
+                        = tag(:img, {:class =>"pngFix #{add_link_broken_class(document)}", :src => display_document_icon(dt), :alt => "#{document.name}"}) + draggable + "<div class='documentname-wrap'><span class='#{current_user_is_admin? ? "document-name" : "document-name-public"}'>#{get_document_name(document.name)}</span></div>".html_safe
+
+                        %div.docs-options
+                          - if logged_in?
+                            - unless current_user_is_employee?
+                              %span.button-wrap
+                                -#= link_to tag("img", { :src => "../images/oc_update.png", :alt => "oc.png" }),out_of_cycle_product_document_path(@product,document),:title => 'mark as out of cycle', :class => 'mc-button-link ofc'
+                                = image_tag("../images/oc_update_new1.png",{:alt => "oc.png",:name => out_of_cycle_product_document_path(@product,document),:title => 'mark as out of cycle', :class => 'ofc'})
+                                = link_to tag("img", { :src => "../images/edit-small.png", :alt => "edit-small.png" }),edit_product_document_path(@product,document), :class => 'mc-button-link',:title => "Edit #{document.name.squeeze(" ")}"
+                                = link_to tag("img", { :src => "../images/delete-small.png", :alt => "delete-small.png" }),product_document_path(@product,document), :onClick => delete_function("Are you sure you want to delete the document?"), :method => :delete,:class => 'mc-button-link',:title => "Delete #{document.name.squeeze(" ")}"
+                          %span.docs-date
+                            = document.updated_at.strftime("%d %b %Y")
+                          %span.download-file
+                            = link_to tag("img", { :src => "../images/download.png", :alt => "download-icon", :title => "download this document" }), get_document_link(@product,document), :target => "_blank"
+
+                          - if document.description.blank?
+                            %span.tooltip-open-arrow.no-doc-description
+                          - else
+                            %span.tooltip-open-arrow.qtipcallback
+                              %img{:src => "../images/info-icon.png", :id => "doc-desc-link-#{document.id}"}
+
+                        -# description contents
+                        %div.docs-details{:id => "doc-desc-#{document.id}"}
+                          = raw document.description
+                        
+
+          %p
+            - if logged_in?
+              -  if current_user.is_a?(Admin)
+                = link_to "Add Document", new_product_document_path(@product), :class => 'logout' ,:id => "login-link",:title => "Add new document to #{@product.filtered_name.gsub(/\s+/, " ").strip}"
+                = link_to "Save Document Order", document_order_product_documents_path(@product), :class => "save-document-order" if ( !documents.nil? && documents.size != 1)
+            = link_to "Download All",document_link(@product,"#{@product.slug}_documentation.zip"),:class => 'zip-downloaded' if ( !documents.nil? && has_a_valid_document_link(documents) && is_zip_present?(@product,"#{@product.slug}_documentation.zip"));
+
+        -if @product.is_parent_product? && current_user_is_admin?
+          - unless @versions.blank?
+            #product-tree.clearfix
+              %ul.product-docs.versions
+                -@versions.each do |version|
+                  %li.ui-state-default
+                    %a{:href => "#{version[:url]}",:class =>"product-name-link", :target => "_blank"}
+                      %img{:src => "../images/folder.gif"}
+                      %span{:id => "#{version[:id]}"}
+                        = version[:name]
+                      :javascript
+                        $("#" + "#{version[:id]}").html("#{version[:name]}".replace(/®/g, "<sup>®</sup>"));
+          -if @product.children.count != 0
+            %p
+              = link_to "Show Preview", preview_product_path(@product), :class => 'logout',:title => "See Preview for #{@product.filtered_name.squeeze(" ")}"
+          -else
+            %p
+              Sorry! No preview for a product with no versions.
+      = hidden_field_tag "productID", @product.id
+      = hidden_field_tag "productRating"
+      = hidden_field_tag "productName", @product.name
+
+
+      - unless @actual_document_links.blank?
+        - @actual_document_links.each_index do |links|
+          = link_to "link#{links}" , @actual_document_links[links] , :class => "hidden", :target => '_blank'
+
+
+      #feedback{:style => 'display:none; overflow:hidden;border:1px solid #AAAAAA;'}
+        %iframe{:src => "#{feedback_product_url(@product)}",:id => "iframe_form", :name => "iframe_form", :onload => "insertProductName()", :frameborder => "0", :scrolling => "no"}

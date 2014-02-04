@@ -1,0 +1,309 @@
+
+.header-content .instruction-header a {
+    background: url("../images/tibco-logo-new.png") no-repeat scroll 0 5px transparent;
+    color: #00416B;
+    float: left;
+    font-family: arial;
+    font-size: 24px;
+    font-weight: normal;
+    height: 60px;
+    line-height: 2.8;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 145px;
+}
+  h3
+  {
+  text-align:center;
+  }
+
+  ol{
+      text-align: center;
+  }
+  dl  li{
+  text-align:center;
+  color:red;
+  font-size:20px;
+  margin-bottom: 25px;
+ }
+
+ dl img{
+  margin-bottom: 37px;
+ }
+ hr{
+  margin-top:79px;
+  }
+ .instruction-heading > a {
+      font-size: 16px;
+  }
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+   .header-content{
+     width:90% !important;
+   }
+  .instruction-heading {
+    width:95%;
+  }
+.product-instruction-wraper label{
+  font-size:18px !important;
+}
+}
+
+/*** For new design ***/
+body{
+  font-family:arial;
+}
+.content-wraper {
+    margin: 0 auto;
+    width: 1140px;
+}
+
+/** header **/
+.instruction.header {
+    float: left;
+    height: 57px;
+}
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+.instruction-heading {
+    margin: 20px auto;
+}
+.header-content {
+    margin: 14px auto;
+    width: 100%;
+}
+#login {
+    float: right;
+    height: 34px;
+    margin: 18px 0 0;
+}
+ #register {
+    color: #9A9A9A;
+    display: inline;
+    margin: 5px 0 0;
+    padding: 0;
+}
+ul {
+    list-style-type: none;
+}
+ol {
+    list-style-type: decimal !important;
+    color:red;
+}
+ul#register li {
+    display: inline;
+    margin-left: 0;
+    text-decoration: none;
+}
+
+.header-content #login #register .welcome_text {
+    font-family: georgia;
+    font-size: 15px;
+    font-style: italic;
+    margin-right: 1px;
+}
+
+.header-content #login #register .Admin_username {
+    font-family: arial;
+    font-size: 12px;
+    font-style: normal;
+    margin-left: 3px;
+}
+
+.welcome_bar_admin {
+    font-size: 15px;
+    margin-left: 4px;
+    margin-right: -6px;
+}
+
+ul#register li a {
+    color: #9B9B9B;
+    font-size: 10px;
+    margin-left: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.instruction-wraper > h1 {
+  text-align:center;
+  font-size:24px;
+  color:#777777;
+
+}
+/***   Tree view section****/
+.instruction-wraper {
+    margin: 0 auto;
+    width: 100%;
+}
+.product-instruction-wraper {
+    clear: both;
+    margin-bottom:10px;
+    overflow:hidden;
+}
+
+.product-instruction-wraper label {
+    color: #036CAE;
+    float: left;
+    font-family: arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px 2px;
+    cursor:pointer;
+}
+
+.product-instructions-items {
+  clear: left;
+  float: left;
+  font-size:14px;
+  padding-bottom:5px;
+  margin-left: 10px;
+  clear:left;
+}
+
+.product-instructions-items > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.product-instructions-items li {
+    padding: 5px 0;
+}
+
+.product-instructions-items a {
+    border-bottom: 1px solid #CCCCCC;
+    color: #838383;
+    font-weight: bold;
+    padding-bottom: 5px;
+    text-decoration: none;
+}
+
+.product-instruction-wraper label span {
+    /*margin-left: 6px;*/
+    padding: 2px;
+}
+.product-label {
+width: 70px;
+}
+
+
+#out_of_cycle > h2 {
+    margin: 10px 0;
+}
+/** image wraper**/
+
+#visbility_level h4 {
+    margin: 7px 0;
+}
+
+#visbility_level h3 {
+    margin: 20px 0 10px;
+}
+.img-wraper li .subtitle {
+    font-size: 14px;
+    margin: 5px 0 5px 10px;
+}
+
+.img-wraper li ul {
+    margin-left: 10px;
+}
+
+.img-wraper a {
+    color: #777777;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.adding-category > div#add_category {
+    margin-bottom: 10px;
+}
+
+.instruction-info {
+    margin: 10px 0;
+    color:red;
+}
+.adding-category > div#sub_category {
+    margin-top: 25px;
+}
+
+.adding-category > div#update_category,.adding-category > div#deleting_category,.adding-category > div#remove_parent_category,.img-wraper div#updating_product,
+.img-wraper div#deleting_product,.instruction-wraper div#updating_document,.instruction-wraper div#remove_document,.instruction-wraper div#order_of_document,.instruction-wraper > div#visibility {
+    margin: 15px 0 0;
+}
+/*** for visibility section ***/
+#visibility h2 {
+    margin: 7px 0;
+}
+
+#visibility h4 {
+    margin: 20px 0 10px;
+}
+
+#visibility h3 {
+    margin: 20px 0 5px;
+}
+#visibility ul li p {
+   font-size: 14px;
+    margin: 6px 0;
+}
+
+#visibility ul li p span.level-type {
+    font-size: 16px;
+    font-weight: 200;
+}
+/*** for visibility section ***/
+#visibility ul li p {
+   font-size: 14px;
+    margin: 6px 0;
+}
+
+#visibility ul li p span.level-type {
+    font-size: 16px;
+    font-weight: 200;
+}
+/*** for quick find section ***/
+
+#quick_find p.functinality-info {
+    font-size: 15px;
+    margin: 7px 0;
+}
+
+/**** for back to top button***/
+#back-top {
+    bottom: 0;
+    clear: both;
+   right:40px;
+    position: fixed;
+    text-align: right;
+    width: 180px;
+    display:none;
+}
+#back-top a {
+    color: #ADA597;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.7s ease 0s;
+}
+
+#back-top span {
+    background: url("../images/back-to-top.png") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    display: block;
+    float: right;
+    height: 28px;
+    margin: -8px 0 0 6px;
+    width: 28px;
+}
+
+#back-top em {
+    color: #036CAE;
+    cursor:pointer;
+    float: right;
+    font: bold 12px/100% "Lucida Grande",Arial,"Lucida Sans Unicode",sans-serif;
+    letter-spacing: 1px
+}

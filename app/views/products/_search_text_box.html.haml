@@ -1,0 +1,19 @@
+:javascript
+  var prod_list = #{@prod_list};
+
+%ul#search-content{:class => "#{'search-content-class' if logged_in?}"}
+  %li
+    %div{ :class => 'clearfix', :style => "margin: 10px;"}
+      #search-box-big
+        - semantic_form_for :search, :url => search_tab_products_path, :html => {:method => :get, :id => 'search-box-gsa'} do |f|
+          = f.hidden_field :filters, :name => 'filters'
+          = f.text_field :query, :id =>'big-find', :name => 'query'
+          = f.submit "", :id => 'search-button', :class => 'pngFix'
+      = text_field_tag :prod_list ,"Add Filter", :id => "search-filter"
+  
+  %li#all-tokens
+    %ul
+
+- if params[:query]
+  #search-results-wrapper
+    = render 'search'

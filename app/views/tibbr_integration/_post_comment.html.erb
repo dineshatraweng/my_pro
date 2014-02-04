@@ -1,0 +1,24 @@
+<div id="tib-box">
+  <div id="postinfo">
+    <div id="tib-post">
+      <div id="posting_tags">
+        <%- unless logged_in? && current_user_is_employee? %>
+            <div class="login">
+              <a href="/tibbr_integration/login">Login</a>
+            </div>
+        <% else %>
+        <fieldset>
+          <input type="hidden" value="<%=@active_tab%>" id="active_tab"/>
+          <%-text =  @active_tab == 'tib-post_tib-box' ? "Enter comments on the currently displayed section of the documentation": "Enter general comments on this product's documentation" %>
+          <textarea id="tib-text" class="defaultText tib-text" tabindex="1" rows="2" name="message[content]" cols="25" autocomplete="off" placeholder="<%= text%>"></textarea>
+        </fieldset>
+        <div id="tib">
+          <a href="#" class="post-tib">
+            <span id="tib-btn" class="comment-reply"> Post </span>
+          </a>
+        </div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

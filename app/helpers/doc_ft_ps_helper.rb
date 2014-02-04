@@ -1,0 +1,2 @@
+module DocFtPsHelper
+end

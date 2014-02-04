@@ -1,0 +1,9 @@
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  float: left;
+}
+
+.ellipsis.multiline {
+        white-space: normal;
+}

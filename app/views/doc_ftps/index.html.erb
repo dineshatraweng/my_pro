@@ -1,0 +1,32 @@
+<div id="main-content">
+  <div class='add-archive-file create-domain'>
+    <%= link_to "Unzip File", new_doc_ftp_path , :class => 'add-domain-link' %>
+  </div>
+
+  <div class="listing-content">
+    <div><h2>Unzipped Files History</h2></div>
+
+    <table>
+      <thead>
+      <tr>
+        <th>FTP Path</th>
+        <th>Requested At</th>
+        <th>Status</th>
+        <th>Error Message</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @doc_ftps.each do |doc_ftp| %>
+          <tr >
+            <td ><%= doc_ftp.path %></td>
+            <td class="requested-at"><%= doc_ftp.created_at %></td>
+            <td ><%= doc_ftp.status %></td>
+            <td class="file-error"><%= raw doc_ftp.error_message %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+

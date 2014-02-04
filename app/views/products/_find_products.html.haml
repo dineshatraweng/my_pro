@@ -1,0 +1,3 @@
+- semantic_form_for :find, :url => find_products_path , :html => {:method => :get} do |f|
+  = f.input :product_name, :input_html => {:id => 'quick-find'}, :label => 'Enter product name', :required => false
+  = f.commit_button '', :button_html => {:id => 'search-button', :class => 'pngFix'}

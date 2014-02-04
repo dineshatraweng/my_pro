@@ -1,0 +1,50 @@
+.token-input-list-facebook{
+    width:120px;
+}
+
+#content-wrapper #content #main-content p{width: 100%}
+#login-tabs ul.ui-widget-header{background:repeat scroll 0 0 transparent;}
+.ui-dialog-titlebar-close{border-top-left-radius: 0px; border-top-right-radius: 0px;}
+#content-login div.ui-tabs {border: medium none;}
+#feedback iframe
+{
+    min-height: 270px;
+    width: 100%;
+}
+/*#rating a { background: url("./images/tc-login-bg.png") repeat-x scroll 0 3px transparent;*/
+/*border: 1px solid #CCCCCC;*/
+/*border-radius: 3px 3px 3px 3px;*/
+/*color: #464646;*/
+/*font-family: tahoma;*/
+/*font-size: 13px;*/
+/*padding: 4px 18px;*/
+/*text-decoration: none;}*/
+/*#rating-star{padding: 0 0 15px;*/
+/*width: 100px;*/
+/*}*/
+/*#feedback-overlay #feedback*/
+/*{background: none repeat scroll 0 0 #FFFFFF;*/
+/*border: 1px solid #000000;*/
+/*height: 300px;*/
+/*padding: 10px;*/
+/*position: absolute;*/
+/*top: 115px;*/
+/*left: 536px;*/
+/*right: 17px;*/
+/*bottom: 111;*/
+/*width: 375px;}*/
+#tabs {border: 0 ;}
+#content-wrapper #content #main-content #tabs #tab-label li
+{ margin: 4px 2px 0 0; width: auto; padding: 0; border: 1px solid #EAEAEA;;font-size: 12px;background: none repeat scroll 0 0 #EAEAEA;border-radius: 5px 5px 0 0;font-family: "Helvetica Neue",Arial,sans-serif,Helvetica;}
+
+#content-wrapper #content #main-content ul.product-docs {
+    background: url("../images/top-line.png") no-repeat scroll top left transparent;
+    margin-bottom:20px;
+}
+#content-wrapper #content #main-content ul li.ui-state-active {background-color:#ffffff !important;}
+#content-wrapper #content #main-content ul li.ui-state-default{ background: url("../images/treeview.png") no-repeat scroll 0 -16px transparent;float: left;padding: 7px 0 0 17px;width:480px;border: medium none;}
+#content-wrapper #content #main-content ul li.ui-state-default.last{ background-position:0 -483px;}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    #content-wrapper #content #main-content ul li.ui-state-default{width:335px;padding-left:8px;}
+}

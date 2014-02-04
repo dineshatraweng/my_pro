@@ -1,0 +1,138 @@
+<html>
+<head>
+  <style>
+    body{font-family:"Helvetica Neue",Arial,sans-serif, Helvetica; font-size: 13px;}
+    ul{margin: 0; padding: 0;}
+    ul li{ list-style-type: none; margin: 0 0 10px;}
+    .label-details{margin: 5px 0;float:left;}
+    .input{width:279px;height: 60px; padding: 6px 10px; border: 1px solid #DEDEDE; border-radius: 2px 2px 2px 2px; box-shadow: 0 0 5px #DEDEDE inset; color: #777777; font-family: tahoma; font-size: 12px; font-weight: normal;}
+    textarea{width:279px;resize: none; padding: 6px 10px; border: 1px solid #DEDEDE; border-radius: 2px 2px 2px 2px; box-shadow: 0 0 5px #DEDEDE inset; color: #777777; font-family: tahoma; font-size: 12px; font-weight: normal;}
+    #thankyou-page h1{width:400px; margin: 50px 0 10px -27px; text-align: center; font-size: 2.17em; font-weight: normal;}
+    #thankyou-page p{width:400px; text-align: center; font-size: 1.2em; font-weight: normal; margin-left: -22px;}
+    #submit{ margin-left: 71px; background: url("/images/button-bg.png") repeat-x scroll 50% 50% #FFFFFF; border: 1px solid #BEBEBE; border-radius: 3px 3px 3px 3px; color: #777777; cursor: pointer; font-family: tahoma; font-weight: bold; height: 25px; padding: 1px 10px 4px;}
+    .hidden{display: none;}
+    .error{clear: both; color: red; display: block; font-size: 10px; margin-left: 70px;}
+	body{border: medium none;}
+    .small{margin-left: 35px;height: 30px;}
+    #form-img{ left: 100px;position: relative;border: none}
+  </style>
+	<!--[if IE]>
+		<style>
+			.small {height:20px;}
+		</style>
+	<![endif]-->
+  <script type="text/javascript" src="/javascripts/jquery-1.5.1.min.js"></script>
+ <script type="text/javascript">
+    function loadText(){
+      // function that validates the email to be in the valid Email Format
+      function validateEmail(){
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;    // the Regular expression
+        if(!emailReg.test($("#u_email").val()))
+        {
+          EmptyEmailError();
+          $("#u_email").after('<span class="error" id="error"> Enter a valid email address.</span>');
+          return false;
+        }
+		return true;
+      };
+      // removes the validation message if it exists
+      function EmptyEmailError()
+      {
+        if( $("#error"))
+        {
+          $("#error").remove();
+        }
+      };
+      // validate email field whn text box loses focus
+      $("#u_email").focusout(function () {
+        validateEmail();
+      });
+      // removes the validation message if it exists when text box is begin edited
+      $("#u_email").focus(function () {
+        EmptyEmailError();
+      });
+
+	   // function that the comment is always given.
+	  function validateComment(){
+        if($("#comment").val() == "")
+        {
+          EmptyCommentError();
+          $("#comment").after('<span class="error" id="error1"> Comment is required.</span>');
+          return false;
+        }
+		return true;
+      };
+
+	   // removes the validation message if it exists
+      function EmptyCommentError()
+      {
+        if( $("#error1"))
+        {
+          $("#error1").remove();
+        }
+      };
+      // validate comment field whn text box loses focus
+      $("#comment").focusout(function () {
+        validateComment();
+      });
+      // removes the validation message if it exists when text box is begin edited
+      $("#comment").focus(function () {
+        EmptyCommentError();
+      });
+
+      // submit form to formvine server
+      $("#submit").click(function(){
+        var flag, flag1;
+		flag = validateEmail();
+		flag1 = validateComment();
+        if(!flag || !flag1 )
+        {
+		return false;
+		}
+
+		$('#form-details').addClass('hidden');
+        $('#thankyou-page').removeClass('hidden');
+        $("#data").val('{"a107":"'+ $("#prod_name").val()+'","a109":"'+ $("#prod_rate").val() +'","a108":"' + $("#prod_url").val()  +'","a100":"' + $("#u_name").val() +'","a101":"' + $("#u_email").val() +'","a102":"' + $("#comment").val() +'"}');
+        $("#formvine").submit();
+		return false;
+      });
+    }
+  </script>
+</head>
+<body onload="loadText()">
+
+<form id="formvine" action="http://www.formvine.com/fv/DataStore/create" method="POST" target="collector">
+  <input id="operation" type="hidden" name="operation" value='table1'></input>
+  <input id="path" type="hidden" name="path" value='/data/5534557129/8854/table1'></input>
+  <input id="data" type="hidden" name="data"></input>
+</form>
+<div id="form-details">
+  <form id="false_form" name="false_form" >
+
+    <input type="text" id="prod_url" style="display: none"> </input>
+    <input type="text" id="prod_name" style="display: none"> </input>
+    <input type="text" id="prod_rate" style="display: none"> </input>
+
+    <ul>
+      <li>
+        <label class="label-details">Name</label> <input type="text" id="u_name" class= "input small">
+      </li>
+      <li>
+        <label class="label-details">Email</label>  <input type="text" id="u_email"  class= "input small">
+      <li>
+        <label class="label-details">Comments*</label>  <textarea row="10" cols="20" id="comment"  class= "input"></textarea>
+      </li>
+      <li>
+        <button id="submit"> submit </button>
+      </li>
+    </ul>
+  </form>
+</div>
+<div id="thankyou-page" class="hidden">
+  <h1>Thank You!</h1>
+  <p>Your feedback is valuable to us.</p>
+<a href="http://www.formvine.com" target="_blank"><img src="/images/formvine.png" id="form-img" ></a>
+</div>
+<iframe name="collector" style="display:none;"></iframe>
+</body>
+</html>

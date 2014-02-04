@@ -1,0 +1,130 @@
+%html
+  %head
+    :css
+      body{font-family:"Helvetica Neue",Arial,sans-serif, Helvetica; font-size: 13px;}
+      ul{margin: 0; padding: 0;}
+      ul li{ list-style-type: none; margin: 0 0 10px;}
+      .label-details{margin: 5px 0;float:left;}
+      .input{width:279px;height: 60px; padding: 6px 10px; border: 1px solid #DEDEDE; border-radius: 2px 2px 2px 2px; box-shadow: 0 0 5px #DEDEDE inset; color: #777777; font-family: tahoma; font-size: 12px; font-weight: normal;}
+      textarea{width:279px;resize: none; padding: 6px 10px; border: 1px solid #DEDEDE; border-radius: 2px 2px 2px 2px; box-shadow: 0 0 5px #DEDEDE inset; color: #777777; font-family: tahoma; font-size: 12px; font-weight: normal;}
+      #thankyou-page h1{width:400px; margin: 50px 0 10px -27px; text-align: center; font-size: 2.17em; font-weight: normal;}
+      #thankyou-page p{width:400px; text-align: center; font-size: 1.2em; font-weight: normal; margin-left: -22px;}
+      #thankyou-page a{outline:medium none;}
+      #submit{ margin-left: 71px; background: url("/images/button-bg.png") repeat-x scroll 50% 50% #FFFFFF; border: 1px solid #BEBEBE; border-radius: 3px 3px 3px 3px; color: #777777; cursor: pointer; font-family: tahoma; font-weight: bold; height: 25px; padding: 1px 10px 4px;outline:0 none;}
+      #submit:focus {outline: 0 none;}
+      .hidden{display: none;}
+      .error{clear: both; color: red; display: block; font-size: 10px; margin-left: 70px;}
+      body{border: medium none;}
+      .small{margin-left: 35px;height: 30px;}
+      #form-img{ left: 100px;position: relative;border: none}
+    /[if IE]
+      :css
+        .small {height:20px;}
+
+    = javascript_include_tag 'jquery-1.8.2.min'
+    :javascript
+      function loadText(){
+        // function that validates the email to be in the valid Email Format
+        function validateEmail(){
+          var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;    // the Regular expression
+          if(!emailReg.test($.trim($("#u_email").val())))
+          {
+            EmptyEmailError();
+            $("#u_email").after('<span class="error" id="error"> Enter a valid email address.</span>');
+            return false;
+          }
+          return true;
+        };
+        // removes the validation message if it exists
+        function EmptyEmailError()
+        {
+          if( $("#error"))
+          {
+            $("#error").remove();
+          }
+        };
+        // validate email field whn text box loses focus
+        $("#u_email").focusout(function () {
+          validateEmail();
+        });
+        // removes the validation message if it exists when text box is begin edited
+        $("#u_email").focus(function () {
+          EmptyEmailError();
+        });
+        // function that the comment is always given.
+        function validateComment(){
+          if($.trim($("#comment").val()) == "")
+          {
+            EmptyCommentError();
+            $("#comment").after('<span class="error" id="error1"> Comment is required.</span>');
+            return false;
+          }
+          return true;
+        };
+         // removes the validation message if it exists
+        function EmptyCommentError()
+        {
+          if( $("#error1"))
+          {
+            $("#error1").remove();
+          }
+        };
+        // validate comment field whn text box loses focus
+        $("#comment").focusout(function () {
+          validateComment();
+        });
+        // removes the validation message if it exists when text box is begin edited
+        $("#comment").focus(function () {
+          EmptyCommentError();
+        });
+        // submit form to formvine server
+        $("#submit").click(function(){
+          var flag, flag1;
+          flag = validateEmail();
+          flag1 = validateComment();
+          if(!flag || !flag1 )
+          {
+          return false;
+          }
+          $('#form-details').addClass('hidden');
+          $('#thankyou-page').removeClass('hidden');
+          $("#data").val('{"#{app_config(:formvine,:product_name)}":"'+ "#{@product.name}" +'","#{app_config(:formvine,:product_rating)}":"'+ $("#prod_rate").val() +'","#{app_config(:formvine,:product_url)}":"' + "#{product_url(@product)}" +'","#{app_config(:formvine,:username)}":"' + $("#u_name").val() +'","#{app_config(:formvine,:email)}":"' + $("#u_email").val() +'","#{app_config(:formvine,:comment)}":"' + $("#comment").val() +'"}');
+          $("#formvine").submit();
+          return false;
+        });
+      }
+  %body{:onload => "loadText()"}
+    %form#formvine{:action => "http://www.formvine.com/fv/DataStore/create", :method => "POST", :target => "collector"}
+      %input#path{:name => "dataserviceid", :type => "hidden", :value => "submitter"}
+      %input#path{:name => "projectid", :type => "hidden", :value => "#{app_config(:formvine,:projectid)}"}
+      %input#path{:name => "spaceid", :type => "hidden", :value => "#{app_config(:formvine,:spaceid)}"}
+      %input#path{:name => "tableid", :type => "hidden", :value => "table1"}
+      %input#data{:name => "data", :type => "hidden"}
+    #form-details
+      %form#false_form{:name => "false_form"}
+        %input#prod_url{:style => "display: none", :type => "text"}
+        %input#prod_rate{:style => "display: none", :type => "text"}
+        %input#product_name{:style => "display: none", :type => "text", :value => "#{app_config(:formvine,:product_name)}"}
+        %input#product_url{:style => "display: none", :type => "text",:value => "#{app_config(:formvine,:product_url)}"}
+        %input#product_rating{:style => "display: none", :type => "text",:value => "#{app_config(:formvine,:product_rating)}"}
+        %input#user_name{:style => "display: none", :type => "text",:value => "#{app_config(:formvine,:username)}"}
+        %input#user_email{:style => "display: none", :type => "text",:value => "#{app_config(:formvine,:email)}"}
+        %input#comment_input{:style => "display: none", :type => "text",:value => "#{app_config(:formvine,:comment)}"}
+        %ul
+          %li
+            %label.label-details Name
+            %input#u_name.input.small{:type => "text"}
+          %li
+            %label.label-details Email
+            %input#u_email.input.small{:type => "text"}
+              %li
+                %label.label-details Comments*
+                %textarea#comment.input{:cols => "20", :row => "10"}
+              %li
+                %button#submit submit
+    #thankyou-page.hidden
+      %h1 Thank You!
+      %p Your feedback is valuable to us.
+      %a{:href => "http://www.formvine.com", :target => "_blank"}
+        %img#form-img{:src => "/images/formvine.png"}/
+    %iframe{:name => "collector", :style => "display:none;"}

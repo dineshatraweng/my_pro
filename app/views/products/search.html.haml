@@ -1,0 +1,15 @@
+-#%iframe{:src => @search_url, :style => "width:950px;height:700px;"}
+-unless @search_result.empty?
+  - if @search_result.has_key?(:cached_page)
+    = @search_result[:cached_page].html_safe
+  - else
+    - if @search_result[:total_results] == 0
+      %p.search-result= "No Search Results"
+
+    - else
+      #search-status
+        %h2= "<b>Search results for</b> #{@search_result[:all_params][:query]}".html_safe
+      #search-results-list
+        = render :partial => 'shared/search_results', :locals => {:search_result => @search_result}
+
+      = render :partial => 'shared/search_results_bottom_navigation', :locals => {:search_result => @search_result}

@@ -1,0 +1,63 @@
+- unless @previous_url.blank?
+  :javascript
+    previousUrl="#{@previous_url}"
+
+#browse-tab.padd-top20
+  #side-bar
+    #search-box.ui-widget
+      = render :partial => 'find_products'
+
+    #tree-control
+      = link_to tag(:img,{:src => "/images/collapse.png", :class =>'pngFix'}),"javascript:void(0)", :class => "collapse-all"
+      = link_to tag(:img,{:src => "/images/expand.png", :class =>'pngFix'}),"javascript:void(0)", :class => "expand-all"
+
+    %ul#browse.filetree.treeview-famfamfam
+      = render :partial => 'product_list'
+  #main-content
+    #white-wrapper
+      #container.description
+        = render :partial => 'shared/description'
+
+      - unless @products.blank?
+        #recent-updates
+          %h2 Recent Updates
+          - unless  @products.count <= 10
+
+            %a{:href => "javascript:void(0)", :id => "see-all", :class => "contact-us-link"} See All Updates
+          %ul
+            -@products.each_with_index do |product, count|
+
+
+              %li{:class => "updates #{(count > 9) ? 'hide': ''}" }
+                %img.folder.gifFix{:src => "../images/folder-med.png", :alt => "folder-big.png"}
+                %p
+                  = link_to product.name_filter, product_path(product), :class=> 'product_name' , :id => "recent_update_#{product.id}"
+                  %span #{product.get_recent_update_message}
+                - if current_user_is_admin?
+                  - documents = product.recent_updated_document
+                  - unless documents.blank?
+                    %ul
+                      - documents.each do |document|
+                        - dt = get_extension_from_url(document.link)
+                        - unless dt.blank?
+                          %li{:class => "#{dt.downcase} recent-document"}
+                            %img.img.pngFix{:src => display_document_icon(dt), :alt => "#{dt.downcase}.png"}
+                            %p
+                              = "#{document.name}.#{dt.downcase}"
+                              - text = "added on #{document.created_at.strftime('%F')}"
+                              %span #{text}
+
+            %li
+              - unless @products.size <= 10
+                %a{:href => "javascript:void(0)", :class => "see-more"} See More
+                %a{:href => "javascript:void(0)", :class => "see-less", :title => 'Collapse Update List'}
+                  %img{:src => '/images/arrow_up.png', :label => 'Collapse the list of updates'}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,134 @@
+content-wrapper #content #main-content form ul li fieldset{position:relative;}
+#content-wrapper #content #main-content form ul li legend{float: left;position:relative;left:-7px;}
+#content-wrapper #content #main-content form ul li ol li#product_access_level_input ol, #content-wrapper #content #main-content form ul li ol li#product_oem_input ol  {
+    margin-left:6px;
+}
+#content-wrapper #content #main-content form ul li ol{
+    position:relative;
+    margin-left:120px;
+    margin-top:-13px;
+    /*width:280px;*/
+    /*height:126px;*/
+    /*max-height: 126px;*/
+    /*height: expression( this.scrollHeight > 126 ? "126px" : "auto" );*/
+    /*overflow-x: hidden;*/
+    /*overflow-y: auto;*/
+}
+
+.ui-widget {
+    font-family: "Helvetica",Arial,sans-serif !important;
+}
+
+#content-wrapper #content #main-content form ul li ol li{float:left;width:100%;color: #777777;font-size: 12px;font-weight:normal;}
+#content-wrapper #content #main-content form ul li ol li input[type="checkbox"]{float:left;margin:0 5px 0 0;}
+#content-wrapper #content #buttons{position: absolute;top: 1.5%;width: 99%;left:0;}
+#search-results-wrapper {
+    height: 100%;
+    position:relative;
+    /*padding-bottom:10px;*/
+}
+
+#content-wrapper #content #main-content ul li .mc-button-wrap {
+    position:absolute;
+    float: right;
+    right:10px;
+    margin-top:2px;
+    /*margin-left:300px;*/
+}
+/*#content-wrapper #content #main-content ul li.ui-state-default{ background: url("../images/treeview.png") no-repeat scroll 0 -16px transparent;float: left;padding: 8px 0 0 17px;width:480px;}*/
+/*#content-wrapper #content-login #login-wrap{*/
+/*border: 1px solid #B7B7B7;*/
+/*background:#ffffff;*/
+
+/*clear: both;*/
+/*margin: 80px auto;*/
+/*padding: 0px;*/
+/*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#eaeaea');*/
+/*width: 570px;*/
+/*}*/
+
+#content-wrapper #content-login #login-wrap form #actions a.tibcommunity-register {
+    position:relative;
+    top:-4px;
+}
+
+#content-wrapper #content-login #login-wrap form, #content-wrapper #content-login #admin-login-wrap form{
+    height: 162px;
+    margin: 0px auto;
+    position: relative;
+    top: -35px;
+    /*width: 429px;*/
+}
+p.employee-login-header{
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    margin-top:20px;
+    padding-bottom:0px;
+}
+
+#content-wrapper #content #main-content #az-wrap ul li.root-product-block ul.products-for-group{clear:both;}
+#content-wrapper #content #main-content #az-wrap ul li.root-product-block ul.products-for-group li{clear:both;}
+#content-wrapper #content #main-content #az-wrap ul li.child-product-list ul.products-for-group li.root-product-list {width:280px ;}
+#content-wrapper #content #main-content #az-wrap ul li.root-product-block ul.products-for-group li{width:288px;}
+#content-wrapper #footer {float: none;}
+
+
+#content-wrapper #content{
+    clear:both;
+    position: relative;
+    background: url("../images/content-bg.png") no-repeat scroll 0 3px transparent;
+    margin: 0 auto;
+    padding: 0px 0px 0px; /*changes made by dipti padding: 0px 0px 60px;*/
+    width: 940px;
+    overflow: hidden;
+    height:auto;
+    min-height:450px;
+}
+
+#content-wrapper #content #search-footer {
+    float: left;
+    width: 100%;
+    margin:0px;
+    height:42px;
+    position:relative;
+}
+
+#content-wrapper #content #main-content #az-wrap #az-title-wrap {
+    border-bottom:1px solid #cecece;
+    float: left;
+    width: 550px;
+}
+
+#content-wrapper #content #main-content #az-wrap ul{
+    width:540px;
+}
+
+#content-wrapper #content #browse-tab #main-content #az-wrap ul li span.require-login, #content-wrapper #content #main-content #az-wrap #az-title-wrap p.asterisk-notice span.require-login{float:right;}
+#content-wrapper #content #main-content #az-wrap #az-title-wrap p.asterisk-notice{text-align:right;}
+#content-wrapper #content #main-content #az-wrap #az-title-wrap p.asterisk-notice span.require-login{float:left;}
+#content-wrapper #content #main-content #az-wrap .products-for-group .root-product-list a{float:left;}
+#content-wrapper #content-login #login-wrap form #actions input, #content-wrapper #content-login #admin-login-wrap form #actions input{ padding: 4px 0;filter:chroma(color=#000000);
+}
+#content-wrapper #content-login #login-wrap form #actions{padding-right: 0px;}
+#content-wrapper #content-login #admin-login-wrap form #actions input#btn2,#content-wrapper #content-login #admin-login-wrap form #actions input#btn4{width:150px;}
+#content-wrapper #content-login #admin-login-wrap form #actions input#btn3,#content-wrapper #content-login #admin-login-wrap form #actions input#btn5{width:110px;}
+.ui-tabs {
+    padding-top: 9em;
+}
+.version-tab {
+    padding-top: 0em!important;
+}
+
+#content-wrapper #content #main-content .description ul li{ float:none; padding-bottom: 0px; }
+#content-wrapper #content #main-content form {padding-left: 10px;}
+#content-wrapper #buttons{padding-bottom: 15px !important;} /*dipti */
+/*#content-wrapper #content #main-content p{margin-top: 20px}*//*dipti */
+#content-wrapper #content #main-content .form-table th{background: #ccc;}
+#main-content #product-tree{margin-bottom: 20px;}
+/*#content-wrapper #content #main-content h2.heading{float:left;}*/
+/*#content-wrapper #content #main-content #rating{margin-top:-30px}*/
+.margtop{margin-top: -30px !important;}
+.result-count > span{
+  margin-right:5px;
+}

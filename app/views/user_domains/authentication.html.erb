@@ -1,0 +1,23 @@
+<div id="main-content">
+  <h2>Authenticate Domain panel access</h2>
+
+  <%= semantic_form_for :authenticate ,:url => {:controller => 'user_domains', :action=> 'authenticate'}, :html => { :method => 'post'} do |f| %>
+     <% if defined?(@error_message) && !@error_message.blank? %>
+      <h2 class="auth-error-message error_details"><%= @error_message.html_safe %> </h2>
+    <% end %>
+      <ul>
+        <div class="inputcontrols-row clearfix">
+          <%= f.input :email,   :input_html => { :size => 20, :value => (@authentication_data[:email] if @authentication_data.is_a?(Hash)) }  %>
+          <%= "<p class='inline-errors'>can't be blank</p>".html_safe if defined?(@email_error) && !@email_error.blank? %>
+        </div>
+        <div class="inputcontrols-row clearfix">
+          <%= f.input :password, :input_html => { :size => 20 }  %>
+          <%= "<p class='inline-errors'>can't be blank</p>".html_safe if defined?(@password_error) && !@password_error.blank? %>
+        </div>
+      </ul>
+      <div id="actions">
+        <%= f.submit "Authenticate" %>
+        <%= link_to 'Back', root_path, :class => 'pngFix' %>
+      </div>
+  <% end %>
+</div>

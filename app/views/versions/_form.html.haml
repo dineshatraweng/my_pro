@@ -1,0 +1,16 @@
+= semantic_form_for [@version.product,@version] do |f|
+  - if @version.errors.any?
+    %div#error_explanation
+      %h2= "#{pluralize(@version.errors.count, "error")} prohibited this version from being saved:"
+
+      %ul
+        - @version.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.input :name
+  = f.input :description, :as => :text
+  = f.input :version_number
+  = f.input :folder_path, :as => :text
+  = f.commit_button
+
+= link_to 'Back', product_path(@version.product)

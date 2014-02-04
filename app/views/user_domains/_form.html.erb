@@ -1,0 +1,12 @@
+
+<%= semantic_form_for @user_domain do |f| %>
+    <ul>
+      <%= f.input :name %>
+      <%= f.input :user_groups, :as => :check_boxes, :collection => get_user_groups %>
+
+    </ul>
+    <div id="actions">
+      <%= f.submit locals[:submit_label] %>
+      <%= link_to 'Back', user_domains_url, :class => 'pngFix' %>
+    </div>
+<% end %>

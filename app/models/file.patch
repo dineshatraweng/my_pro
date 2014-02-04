@@ -1,0 +1,54 @@
+Index: document.rb
+===================================================================
+--- document.rb	(revision 2454)
++++ document.rb	(working copy)
+@@ -8,6 +8,7 @@
+ 
+   after_save :update_project_timestamp
+   after_destroy :update_project_timestamp
++  before_save :remove_slash
+ 
+   validates_presence_of :name
+   validates_presence_of :link
+@@ -17,6 +18,13 @@
+ 
+   DOCTYPE={:folder_path => 'FOLDER_PATH',:windows => 'WINDOWS' }
+ 
++ 
++  def remove_slash()
++      until self.link[0]!="/" do
++         self.link.slice!(0,1)
++      end
++  end  
++
+   def build_link_to_doc(host,product_path)
+     return "#{host}#{product_path}#{self.link}"
+   end
+@@ -158,6 +166,7 @@
+   end
+ 
+   def check_document_path
++      #self.remove_starting_slash
+     if is_doctype_windows?
+       return document_exists_on_win_ftp
+     elsif File.file?("#{app_config[:ftp_root]}/#{self.product.folder_path}/#{self.link}")
+Index: product.rb
+===================================================================
+--- product.rb	(revision 2454)
++++ product.rb	(working copy)
+@@ -21,8 +21,14 @@
+   validate :product_must_have_group
+   validate :check_product_folder_path, :if => Proc.new { |product| product.is_unversioned_product? || product.is_child_product? }
+ 
+-  before_save :filter_tm_reg_and_copyright_chars_from_name #,:check_product_folder_path
++  before_save :filter_tm_reg_and_copyright_chars_from_name,:remove_slash
+ 
++  def remove_slash()
++      until self.folder_path[0]!="/" do
++         self.folder_path.slice!(0,1)
++      end
++  end  
++
+   def hold_until_ga
+     !self.published
+   end

@@ -1,0 +1,91 @@
+
+
+<iframe src="<%= @doc_url %>" style="width: 100%; height: 100%;position: absolute;" id="main-iframe"></iframe>
+
+<!--
+<!--<script type="text/javascript">-->
+<!--//    function findURL(){-->
+<!--//-->
+<!--//        return window.frames[0].window.frames[1].window.frames[1].document.location.href;-->
+<!--//    }-->
+<!--//    function getShowURL()-->
+<!--//    {-->
+<!--//        var url_string = findURL();-->
+<!--//        index = url_string.lastIndexOf('#');-->
+<!--//        if (index != -1)-->
+<!--//        {-->
+<!--//            var hash_removed_url = url_string.substring(0, url_string.lastIndexOf('#')).replace(/[^a-zA-Z0-9]/g,'_');-->
+<!--//            var hash = url_string.substring(url_string.lastIndexOf('#')+1,url_string.length);-->
+<!--//            return '?url='+hash_removed_url+'&hash='+hash;-->
+<!--//        }-->
+<!--//        else-->
+<!--//        {-->
+<!--//            return '?url='+url_string.replace(/[^a-zA-Z0-9]/g,'_');-->
+<!--//        }-->
+<!--//    }-->
+<!--//-->
+<!--//-->
+<!--//    $('#main-iframe').load(function() {-->
+<!--//        console.log("window loaded");-->
+<!--//        var interval_id = setInterval(showCommentBox,100);-->
+<!--//        function showCommentBox()-->
+<!--//        {-->
+<!--//            if (typeof window.frames[0].window.frames[1] != 'undefined')-->
+<!--//            {-->
+<!--//                if($('.contact-us').css('display') == 'none')-->
+<!--//                {-->
+<!--//                    if(typeof window.frames[0].window.frames[1].window.frames[1] != 'undefined')-->
+<!--//                    {-->
+<!--//                        clearInterval(interval_id);-->
+<!--//                        $('.contact-us').css('display','block');-->
+<!--//                        $('#comment-iframe').contents().find("#loading").show();-->
+<!--//                        $('#comment-iframe').attr('src',"/tibbr_integration/<%#=@product%>"+getShowURL());-->
+<!--//                        var prevLocation = window.frames[0].window.frames[1].window.frames[1].document.location.href;-->
+<!--//                        function changeCommentBox(url)-->
+<!--//                        {-->
+<!--//                            var slider = $('.slide-handle').parent();-->
+<!--//                            if ($(slider).hasClass('open'))-->
+<!--//                            {-->
+<!--//                                $('.slide-handle').click();-->
+<!--//                            }-->
+<!--//                            $('#comment-iframe').contents().find("#loading").show();-->
+<!--//                            $('#comment-iframe').attr('src',"/tibbr_integration/<%#=@product%>"+getShowURL());-->
+<!--//                        }-->
+<!--//                        function checkForURLChange()-->
+<!--//                        {-->
+<!--//                            var currentLocation = window.frames[0].window.frames[1].window.frames[1].document.location.href;-->
+<!--//-->
+<!--//                            if ( prevLocation != currentLocation){-->
+<!--//                                // Store the previous locations.-->
+<!--//                                prevLocation = currentLocation;-->
+<!--//                                changeCommentBox(currentLocation);-->
+<!--//                            }-->
+<!--//                        }-->
+<!--//                        setInterval(checkForURLChange,100);-->
+<!--//-->
+<!--//                    }-->
+<!--//-->
+<!--//                }-->
+<!--//-->
+<!--//            }-->
+<!--//        }-->
+<!--//    });-->
+<!--//-->
+<!--//-->
+<!--</script>-->
+
+<!--<div class="contact-us" style="display: none">-->
+  <!--<a href="#" class="slide-handle" onclick=''>Comment</a>-->
+  <!--<div class="notify-wrap"><img src="/images/notification_tag.png"><p class="notify-text">0</p></div>-->
+  <!--<div class="contact-form">-->
+    <!--<div class="wrap">-->
+      <!--<iframe src="/tibbr_integration/<%#=@product%>?url=<%#= "#{root_url}"+@doc_url %>" id="comment-iframe" style="min-height: 540px; min-width: 395px;" scrolling="no"></iframe>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+-->
+
+
+
+

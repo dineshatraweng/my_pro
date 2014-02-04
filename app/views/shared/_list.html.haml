@@ -1,0 +1,15 @@
+%ul
+  - children = group.children.order('name')
+  - children.each do |child|
+    %li
+      %span.pngFix{:class => "expandable-level-#{indentation}"}
+        .ellipsis.category{:title => "#{child.name}", :id => "#{child.name.parameterize}", :name => "#{'c_'+child.id.to_s}"}
+          = child.name_filter
+        - if logged_in?
+          - unless current_user_is_employee?
+            .group-actions
+              = link_to tag("img", { :src => "/images/edit-small.png", :alt => "edit-small.png" }), edit_group_path(child)
+              = link_to tag("img", { :src => "/images/delete.png", :alt => "delete.png" }), child, :onClick => delete_function("Are you sure you want to delete the group?"), :method => :delete
+      - if child.has_children?
+        = render :partial => 'shared/list', :locals => {:group => child, :indentation => indentation+1, :margin => (margin-5)}
+      = render :partial => 'shared/prod', :locals => {:group => child, :indentation => indentation+1}
